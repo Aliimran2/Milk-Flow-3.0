@@ -2,14 +2,11 @@ package com.example.milkflow.utils
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import com.example.milkflow.R
 import com.example.milkflow.databinding.AddPersonDialogBinding
 import com.example.milkflow.model.PersonModel
 import com.example.milkflow.viewmodel.MilkViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 object DialogUtils {
 
@@ -18,9 +15,10 @@ object DialogUtils {
         val inflater = LayoutInflater.from(context)
         val binding = AddPersonDialogBinding.inflate(inflater)
 
-        AlertDialog.Builder(context)
+        MaterialAlertDialogBuilder(context)
             .setTitle("Add new person")
             .setView(binding.root)
+            .setCancelable(false)
             .setPositiveButton("Save") { _, _ ->
 
                     val person = binding.nameTv.text.toString()
