@@ -1,12 +1,14 @@
 package com.example.milkflow.utils
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.widget.Toast
 import com.example.milkflow.databinding.AddPersonDialogBinding
 import com.example.milkflow.model.PersonModel
 import com.example.milkflow.viewmodel.MilkViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlin.random.Random
 
 object DialogUtils {
 
@@ -77,4 +79,5 @@ object DialogUtils {
             .setNegativeButton("Cancel", null)
             .show()
     }
+
 }

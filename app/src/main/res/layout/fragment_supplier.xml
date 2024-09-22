@@ -30,6 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
+                android:backgroundTint="#F06292"
                 android:layout_marginBottom="10dp"
                 android:elevation="20dp">
                 <RelativeLayout
@@ -106,8 +107,10 @@
                     style="@style/font_size"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:paddingStart="60dp"
+                    android:gravity="center"
                     android:layout_marginTop="2dp"
+                    android:textColor="@color/black"
                     android:layout_marginBottom="8dp"
                     android:layout_weight="1"
                     android:text="Name"
@@ -117,10 +120,14 @@
                 <TextView
                     android:id="@+id/textView3"
                     style="@style/font_size"
+                    android:layout_weight="1"
+                    android:gravity="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:layout_marginEnd="16dp"
+                    android:textColor="@color/black"
+                    android:layout_marginEnd="8dp"
+                    android:paddingEnd="20dp"
                     android:layout_marginBottom="8dp"
                     android:text="Quantity" />
             </LinearLayout>
@@ -136,6 +143,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
+                tools:listitem="@layout/milkperson_item"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </LinearLayout>
@@ -145,7 +153,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:backgroundTint="#689F38"
+            android:backgroundTint="#F06292"
             android:text="Add new Supplier"
             android:textSize="16sp"
             android:layout_marginTop="4dp"
