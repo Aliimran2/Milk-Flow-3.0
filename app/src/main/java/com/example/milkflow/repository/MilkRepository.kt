@@ -6,7 +6,7 @@ import com.example.milkflow.model.PersonModel
 
 class MilkRepository(val dao: MilkPersonDao) {
 
-    fun getAll() : LiveData<List<PersonModel>> = dao.getAll()
+    fun getPersonsByType(type:String) : LiveData<List<PersonModel>> = dao.getPersonsByType(type)
 
     suspend fun insert(person:PersonModel){
         dao.insert(person)

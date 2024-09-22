@@ -4,16 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.milkflow.model.PersonModel
 
 @Dao
 interface MilkPersonDao {
-    @Query("SELECT * FROM person_table ORDER BY personName ASC")
-    fun getAll(): LiveData<List<PersonModel>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(personModel: PersonModel)
 
     @Delete
@@ -21,6 +20,9 @@ interface MilkPersonDao {
 
     @Update
     suspend fun update(personModel: PersonModel)
+
+    @Query("SELECT * FROM person_table WHERE personType = :type")
+    fun getPersonsByType(type:String):LiveData<List<PersonModel>>
 
 
 }

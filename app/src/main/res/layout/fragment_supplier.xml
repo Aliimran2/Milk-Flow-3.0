@@ -17,7 +17,7 @@
         android:layout_height="match_parent"
         android:background="#05121212"
         android:padding="4dp"
-        tools:context=".MainActivity">
+        tools:context=".ui.MainActivity">
 
 
         <LinearLayout

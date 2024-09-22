@@ -11,7 +11,7 @@ data class PersonModel(
     var personName : String = "",
     var personRate : Int = 0,
     var personQuantity : Int = 0,
-//    val personType : PersonType
+    val personType : String //collector or supplier or expenses
 )
 
 //enum class PersonType {

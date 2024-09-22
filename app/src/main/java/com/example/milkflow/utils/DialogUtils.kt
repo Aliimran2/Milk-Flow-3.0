@@ -12,7 +12,7 @@ import kotlin.random.Random
 
 object DialogUtils {
 
-    fun addPersonDialog(context: Context, viewModel: MilkViewModel) {
+    fun addPersonDialog(context: Context, viewModel: MilkViewModel, personType:String) {
 
         val inflater = LayoutInflater.from(context)
         val binding = AddPersonDialogBinding.inflate(inflater)
@@ -31,7 +31,8 @@ object DialogUtils {
                     val personModel = PersonModel(
                         personName = person,
                         personRate = rate,
-                        personQuantity = quantity
+                        personQuantity = quantity,
+                        personType = personType
                     )
                     viewModel.insert(personModel)
                 } else {
@@ -41,7 +42,7 @@ object DialogUtils {
             .setNegativeButton("Cancel", null)
             .show()
     }
-    fun editPersonDialog(context: Context, viewModel: MilkViewModel, personModel: PersonModel) {
+    fun editPersonDialog(context: Context, viewModel: MilkViewModel, personModel: PersonModel, personType: String) {
 
         val inflater = LayoutInflater.from(context)
         val binding = AddPersonDialogBinding.inflate(inflater)
@@ -67,7 +68,8 @@ object DialogUtils {
                         id = personModel.id, // Ensure you keep the same ID to update the right entry
                         personName = person,
                         personRate = rate,
-                        personQuantity = quantity
+                        personQuantity = quantity,
+                        personType = personType
                     )
 
                     // Update the person in ViewModel

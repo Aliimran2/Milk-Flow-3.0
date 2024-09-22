@@ -1,7 +1,8 @@
-package com.example.milkflow
+package com.example.milkflow.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.milkflow.R
 import com.example.milkflow.adapter.ViewPagerAdapter
 import com.example.milkflow.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator

@@ -1,10 +1,11 @@
-package com.example.milkflow
+package com.example.milkflow.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.milkflow.R
 
 
 class StatFragment : Fragment() {

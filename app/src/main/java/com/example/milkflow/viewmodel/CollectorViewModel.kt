@@ -9,19 +9,19 @@ import com.example.milkflow.model.PersonModel
 import com.example.milkflow.repository.MilkRepository
 import kotlinx.coroutines.launch
 
-class MilkViewModel(private val repository: MilkRepository):ViewModel() {
+class CollectorViewModel(private val repository: MilkRepository):ViewModel() {
 
     private val _totalAmount =MutableLiveData<Int>()
     val totalAmount :LiveData<Int>
         get() = _totalAmount
 
-    private val _noOfSuppliers = MutableLiveData<Int>()
-    val noOfSuppliers : LiveData<Int> get() = _noOfSuppliers
+    private val _noOfCollectors = MutableLiveData<Int>()
+    val noOfSuppliers : LiveData<Int> get() = _noOfCollectors
 
     private val _totalQuantity = MutableLiveData<Int>()
     val totalQuantity : LiveData<Int> get() = _totalQuantity
 
-    fun getSuppliers() : LiveData<List<PersonModel>> = repository.getPersonsByType("Supplier")
+    fun getCollectors() : LiveData<List<PersonModel>> = repository.getPersonsByType("Collector")
 
     fun insert(personModel: PersonModel) = viewModelScope.launch{
         repository.insert(personModel)
@@ -38,7 +38,7 @@ class MilkViewModel(private val repository: MilkRepository):ViewModel() {
     fun updateTotal(persons : List<PersonModel>){
 
         _totalAmount.value = persons.sumOf { it.personRate * it.personQuantity }
-        _noOfSuppliers.value = persons.size
+        _noOfCollectors.value = persons.size
         _totalQuantity.value = persons.sumOf { it.personQuantity }
     }
 
@@ -51,7 +51,7 @@ class MilkViewModel(private val repository: MilkRepository):ViewModel() {
 
 }
 
-class MilkViewModelFactory(private val repository: MilkRepository):ViewModelProvider.Factory{
+class CollectorVMFactory(private val repository: MilkRepository):ViewModelProvider.Factory{
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return MilkViewModel(repository) as T
     }

@@ -2,14 +2,11 @@ package com.example.milkflow.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.navigation.NavHost
-import androidx.navigation.fragment.NavHostFragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.milkflow.CollectorFragment
-import com.example.milkflow.ExpenseFragment
-import com.example.milkflow.R
-import com.example.milkflow.StatFragment
-import com.example.milkflow.SupplierFragment
+import com.example.milkflow.ui.CollectorFragment
+import com.example.milkflow.ui.ExpenseFragment
+import com.example.milkflow.ui.StatFragment
+import com.example.milkflow.ui.SupplierFragment
 
 class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {
