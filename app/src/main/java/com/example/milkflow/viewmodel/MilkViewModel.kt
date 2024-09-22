@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class MilkViewModel(private val repository: MilkRepository):ViewModel() {
 
-    val _totalAmount =MutableLiveData<Int>()
+    private val _totalAmount =MutableLiveData<Int>()
     val totalAmount :LiveData<Int>
         get() = _totalAmount
 
@@ -30,6 +30,12 @@ class MilkViewModel(private val repository: MilkRepository):ViewModel() {
     fun update(personModel: PersonModel) = viewModelScope.launch {
         repository.update(personModel)
     }
+
+    fun updateTotal(persons : List<PersonModel>){
+
+        _totalAmount.value = persons.sumOf { it.personRate * it.personQuantity }
+    }
+
 
 
 

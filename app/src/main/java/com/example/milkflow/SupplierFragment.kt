@@ -14,7 +14,6 @@ import com.example.milkflow.databinding.FragmentSupplierBinding
 import com.example.milkflow.model.PersonModel
 import com.example.milkflow.repository.MilkRepository
 import com.example.milkflow.utils.DialogUtils
-import com.example.milkflow.utils.SumAndDiffUtils
 import com.example.milkflow.viewmodel.MilkViewModel
 import com.example.milkflow.viewmodel.MilkViewModelFactory
 
@@ -35,7 +34,8 @@ class SupplierFragment : Fragment() {
         val factory = MilkRepository(dao)
         val viewModel = ViewModelProvider(this, MilkViewModelFactory(factory))[MilkViewModel::class.java]
 
-
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
         binding.fab.setOnClickListener {
             DialogUtils.addPersonDialog(requireContext(),viewModel)
@@ -43,7 +43,8 @@ class SupplierFragment : Fragment() {
 
         viewModel.getAll().observe(viewLifecycleOwner){
             adapter.submitList(it)
-             binding.totalSumSupplierTv.text= "Total Suppliers Amount: ${SumAndDiffUtils.updateTotal(it)}"
+            viewModel.updateTotal(it)
+//             binding.totalSumSupplierTv.text= "Total: ${viewModel.totalAmount}"
         }
 
         recyclerView = binding.recyclerView
