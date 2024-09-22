@@ -2,8 +2,9 @@ package com.example.milkflow
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
+import com.example.milkflow.adapter.ViewPagerAdapter
 import com.example.milkflow.databinding.ActivityMainBinding
+import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,7 +13,33 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.viewPager.adapter = ViewPagerAdapter(this)
+
+
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) {tab, position ->
+            when (position){
+                0 -> {
+                    tab.text = "Supplier"
+                    tab.setIcon(R.drawable.icons_supplier)
+
+                }
+                1 -> {
+                    tab.text = "Collector"
+                    tab.setIcon(R.drawable.icons_collector)
+                }
+                2 -> {
+                    tab.text = "Expenses"
+                    tab.setIcon(R.drawable.icons_expenses)
+                }
+                else -> {
+                    tab.text = "Summary"
+                    tab.setIcon(R.drawable.icons_statistics_b)
+                }
+            }
+        }.attach()
 
 
     }

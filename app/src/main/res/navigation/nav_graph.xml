@@ -8,33 +8,21 @@
     <fragment
         android:id="@+id/supplierFragment"
         android:name="com.example.milkflow.SupplierFragment"
-        android:label="fragment_supplier"
-        tools:layout="@layout/fragment_supplier" >
-        <action
-            android:id="@+id/action_supplierFragment_to_collectorFragment"
-            app:destination="@id/collectorFragment" />
-    </fragment>
+        android:label="Suppliers"
+        tools:layout="@layout/fragment_supplier" />
     <fragment
         android:id="@+id/collectorFragment"
         android:name="com.example.milkflow.CollectorFragment"
-        android:label="fragment_collector"
-        tools:layout="@layout/fragment_collector" >
-        <action
-            android:id="@+id/action_collectorFragment_to_expenseFragment"
-            app:destination="@id/expenseFragment" />
-    </fragment>
+        android:label="Collectors"
+        tools:layout="@layout/fragment_collector" />
     <fragment
         android:id="@+id/expenseFragment"
         android:name="com.example.milkflow.ExpenseFragment"
-        android:label="fragment_expense"
-        tools:layout="@layout/fragment_expense" >
-        <action
-            android:id="@+id/action_expenseFragment_to_statFragment"
-            app:destination="@id/statFragment" />
-    </fragment>
+        android:label="Expenditures"
+        tools:layout="@layout/fragment_expense" />
     <fragment
         android:id="@+id/statFragment"
         android:name="com.example.milkflow.StatFragment"
-        android:label="fragment_stat"
+        android:label="Stats"
         tools:layout="@layout/fragment_stat" />
 </navigation>
