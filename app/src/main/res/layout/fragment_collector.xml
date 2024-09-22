@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="viewModel"
-            type="com.example.milkflow.viewmodel.CollectorViewModel" />
+            name="collectoVM"
+            type="com.example.milkflow.viewmodel.MilkViewModel" />
 
     </data>
 
@@ -44,7 +44,7 @@
                         style="@style/font_size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{`Rs. `+String.valueOf(viewModel.totalAmount), default=`Rs 123`}"
+                        android:text="@{`Rs. `+String.valueOf(collectoVM.totalAmount), default=`Rs 123`}"
                         android:layout_alignParentEnd="true"
                         />
 
@@ -70,7 +70,7 @@
                         style="@style/font_size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Total Suppliers: "
+                        android:text="Total Collectors: "
                         android:layout_alignParentStart="true"
                         android:layout_below="@id/titleQuantity"/>
 
@@ -79,7 +79,7 @@
                         style="@style/font_size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{String.valueOf(viewModel.totalQuantity+` liters`), default=`Rs 123`}"
+                        android:text="@{String.valueOf(collectoVM.totalQuantity+` liters`), default=`Rs 123`}"
                         android:layout_alignParentEnd="true"
                         android:layout_below="@+id/total_sum_supplier_tv"
                         />
@@ -90,7 +90,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@{String.valueOf(viewModel.noOfSuppliers), default=`Rs 123`}"
+                        android:text="@{String.valueOf(collectoVM.noOfSuppliers), default=`Rs 123`}"
                         android:layout_alignParentEnd="true"
                         android:layout_below="@+id/total_suppliers"
                         />
@@ -154,7 +154,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:backgroundTint="#4CAF50"
-            android:text="Add new Supplier"
+            android:text="Add new collector"
+            android:textAllCaps="true"
             android:textSize="16sp"
             android:layout_marginTop="4dp"
             android:textColor="@color/white" />

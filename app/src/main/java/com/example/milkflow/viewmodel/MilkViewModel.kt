@@ -15,6 +15,11 @@ class MilkViewModel(private val repository: MilkRepository):ViewModel() {
     val totalAmount :LiveData<Int>
         get() = _totalAmount
 
+
+    private val _totalCollectorAmount =MutableLiveData<Int>()
+    val totalCollectorAmount :LiveData<Int>
+        get() = _totalCollectorAmount
+
     private val _noOfSuppliers = MutableLiveData<Int>()
     val noOfSuppliers : LiveData<Int> get() = _noOfSuppliers
 
@@ -22,6 +27,7 @@ class MilkViewModel(private val repository: MilkRepository):ViewModel() {
     val totalQuantity : LiveData<Int> get() = _totalQuantity
 
     fun getSuppliers() : LiveData<List<PersonModel>> = repository.getPersonsByType("Supplier")
+    fun getCollectors() : LiveData<List<PersonModel>> = repository.getPersonsByType("Collector")
 
     fun insert(personModel: PersonModel) = viewModelScope.launch{
         repository.insert(personModel)
@@ -38,6 +44,13 @@ class MilkViewModel(private val repository: MilkRepository):ViewModel() {
     fun updateTotal(persons : List<PersonModel>){
 
         _totalAmount.value = persons.sumOf { it.personRate * it.personQuantity }
+        _noOfSuppliers.value = persons.size
+        _totalQuantity.value = persons.sumOf { it.personQuantity }
+    }
+
+    fun updateCollectorTotal(persons : List<PersonModel>){
+
+        _totalCollectorAmount.value = persons.sumOf { it.personRate * it.personQuantity }
         _noOfSuppliers.value = persons.size
         _totalQuantity.value = persons.sumOf { it.personQuantity }
     }

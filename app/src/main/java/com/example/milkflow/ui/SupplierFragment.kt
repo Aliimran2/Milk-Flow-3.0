@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.milkflow.adapter.MilkPersonAdapter
@@ -28,31 +29,33 @@ class SupplierFragment : Fragment() {
     ): View {
         _binding = FragmentSupplierBinding.inflate(inflater, container, false)
 
-                val dao = PersonDatabase.getInstance(requireContext()).getDao()
+        val dao = PersonDatabase.getInstance(requireContext()).getDao()
         val factory = MilkRepository(dao)
-        val viewModel = ViewModelProvider(this, MilkViewModelFactory(factory))[MilkViewModel::class.java]
+        val viewModel =
+            ViewModelProvider(this, MilkViewModelFactory(factory))[MilkViewModel::class.java]
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
         binding.addButton.setOnClickListener {
-            DialogUtils.addPersonDialog(requireContext(),viewModel, "Supplier")
+            DialogUtils.addPersonDialog(requireContext(), viewModel, "Supplier")
         }
 
-        viewModel.getSuppliers().observe(viewLifecycleOwner){
+        viewModel.getSuppliers().observe(viewLifecycleOwner) {
             adapter.submitList(it)
             viewModel.updateTotal(it)
 //             binding.totalSumSupplierTv.text= "Total: ${viewModel.totalAmount}"
         }
 
         recyclerView = binding.recyclerView
-        adapter = MilkPersonAdapter(onDeletePerson = {person ->
-                viewModel.delete(person)
-            }, onEditPerson = {person->
-            DialogUtils.editPersonDialog(requireContext(),viewModel, person, "Supplier")
-            }
+        adapter = MilkPersonAdapter(onDeletePerson = { person ->
+            viewModel.delete(person)
+            Toast.makeText(requireContext(), "${person.personName} is deleted", Toast.LENGTH_SHORT).show()
+        }, onEditPerson = { person ->
+            DialogUtils.editPersonDialog(requireContext(), viewModel, person, "Supplier")
+        }
         )
-            recyclerView.adapter = adapter
+        recyclerView.adapter = adapter
 
         return binding.root
     }

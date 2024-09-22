@@ -1,6 +1,5 @@
 package com.example.milkflow.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -8,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.milkflow.databinding.MilkpersonItemBinding
 import com.example.milkflow.model.PersonModel
 import com.example.milkflow.utils.ColorsUtil
-import com.example.milkflow.utils.DialogUtils
 
 
 class MilkPersonAdapter(
