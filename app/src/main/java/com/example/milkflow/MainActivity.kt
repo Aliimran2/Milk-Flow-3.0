@@ -14,6 +14,7 @@ import com.example.milkflow.databinding.ActivityMainBinding
 import com.example.milkflow.model.PersonModel
 import com.example.milkflow.repository.MilkRepository
 import com.example.milkflow.utils.DialogUtils
+import com.example.milkflow.utils.SumAndDiffUtils
 import com.example.milkflow.viewmodel.MilkViewModel
 import com.example.milkflow.viewmodel.MilkViewModelFactory
 
@@ -31,12 +32,15 @@ class MainActivity : AppCompatActivity() {
         val factory = MilkRepository(dao)
         val viewModel = ViewModelProvider(this,MilkViewModelFactory(factory))[MilkViewModel::class.java]
 
+
+
         binding.fab.setOnClickListener {
             DialogUtils.addPersonDialog(this,viewModel)
         }
 
         viewModel.getAll().observe(this){
             adapter.submitList(it)
+             binding.textView.text= SumAndDiffUtils.updateTotal(it).toString()
         }
 
         recyclerView = findViewById(R.id.recyclerView)
@@ -47,15 +51,8 @@ class MainActivity : AppCompatActivity() {
             onEditPerson = {person->
             }
         )
-
-
-
-
             recyclerView.adapter = adapter
 
-
-
     }
-
 
 }
