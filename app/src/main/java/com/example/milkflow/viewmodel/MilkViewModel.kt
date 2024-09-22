@@ -27,6 +27,10 @@ class MilkViewModel(private val repository: MilkRepository):ViewModel() {
         repository.delete(personModel)
     }
 
+    fun update(personModel: PersonModel) = viewModelScope.launch {
+        repository.update(personModel)
+    }
+
 
 
 

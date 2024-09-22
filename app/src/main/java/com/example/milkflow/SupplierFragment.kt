@@ -1,0 +1,67 @@
+package com.example.milkflow
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
+import com.example.milkflow.adapter.MilkPersonAdapter
+import com.example.milkflow.database.PersonDatabase
+import com.example.milkflow.databinding.FragmentSupplierBinding
+import com.example.milkflow.model.PersonModel
+import com.example.milkflow.repository.MilkRepository
+import com.example.milkflow.utils.DialogUtils
+import com.example.milkflow.utils.SumAndDiffUtils
+import com.example.milkflow.viewmodel.MilkViewModel
+import com.example.milkflow.viewmodel.MilkViewModelFactory
+
+
+class SupplierFragment : Fragment() {
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: MilkPersonAdapter
+    private var _binding: FragmentSupplierBinding? = null
+    val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentSupplierBinding.inflate(inflater, container, false)
+
+                val dao = PersonDatabase.getInstance(requireContext()).getDao()
+        val factory = MilkRepository(dao)
+        val viewModel = ViewModelProvider(this, MilkViewModelFactory(factory))[MilkViewModel::class.java]
+
+
+
+        binding.fab.setOnClickListener {
+            DialogUtils.addPersonDialog(requireContext(),viewModel)
+        }
+
+        viewModel.getAll().observe(viewLifecycleOwner){
+            adapter.submitList(it)
+             binding.totalSumSupplierTv.text= "Total Suppliers Amount: ${SumAndDiffUtils.updateTotal(it)}"
+        }
+
+        recyclerView = binding.recyclerView
+        adapter = MilkPersonAdapter(onDeletePerson = {person ->
+                viewModel.delete(person)
+            }, onEditPerson = {person->
+            DialogUtils.editPersonDialog(requireContext(),viewModel, person)
+            }
+        )
+            recyclerView.adapter = adapter
+
+        return binding.root
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
+}

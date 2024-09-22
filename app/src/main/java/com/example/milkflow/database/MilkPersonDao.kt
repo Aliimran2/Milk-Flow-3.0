@@ -10,8 +10,8 @@ import com.example.milkflow.model.PersonModel
 
 @Dao
 interface MilkPersonDao {
-    @Query("SELECT * FROM person_table ORDER BY personName DESC")
-    fun getAll() : LiveData<List<PersonModel>>
+    @Query("SELECT * FROM person_table ORDER BY personName ASC")
+    fun getAll(): LiveData<List<PersonModel>>
 
     @Insert
     suspend fun insert(personModel: PersonModel)
@@ -21,5 +21,6 @@ interface MilkPersonDao {
 
     @Update
     suspend fun update(personModel: PersonModel)
+
 
 }

@@ -23,12 +23,16 @@ class MilkPersonAdapter(
             itemBinding.personModel = person
 
 
-            itemBinding.deleteImg.setOnClickListener {
-                onDeletePerson(person)
+            itemBinding.nameItem.setOnClickListener {
+                onEditPerson(person)
+            }
+            itemBinding.personQuantity.setOnClickListener {
+                onEditPerson(person)
             }
 
-            itemBinding.editImg.setOnClickListener {
-                onEditPerson(person)
+            itemBinding.root.setOnLongClickListener {
+                onDeletePerson(person)
+                true
             }
 
         }
