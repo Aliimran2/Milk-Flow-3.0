@@ -37,7 +37,7 @@ class SupplierFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        binding.fab.setOnClickListener {
+        binding.addButton.setOnClickListener {
             DialogUtils.addPersonDialog(requireContext(),viewModel)
         }
 
