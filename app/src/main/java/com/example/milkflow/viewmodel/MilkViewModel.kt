@@ -15,6 +15,12 @@ class MilkViewModel(private val repository: MilkRepository):ViewModel() {
     val totalAmount :LiveData<Int>
         get() = _totalAmount
 
+    private val _noOfSuppliers = MutableLiveData<Int>()
+    val noOfSuppliers : LiveData<Int> get() = _noOfSuppliers
+
+    private val _totalQuantity = MutableLiveData<Int>()
+    val totalQuantity : LiveData<Int> get() = _totalQuantity
+
     fun getAll() : LiveData<List<PersonModel>> {
         return repository.getAll()
     }
@@ -34,6 +40,8 @@ class MilkViewModel(private val repository: MilkRepository):ViewModel() {
     fun updateTotal(persons : List<PersonModel>){
 
         _totalAmount.value = persons.sumOf { it.personRate * it.personQuantity }
+        _noOfSuppliers.value = persons.size
+        _totalQuantity.value = persons.sumOf { it.personQuantity }
     }
 
 
