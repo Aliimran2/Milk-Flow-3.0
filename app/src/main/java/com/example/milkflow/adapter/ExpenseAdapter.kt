@@ -5,9 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.milkflow.R
 import com.example.milkflow.databinding.ExpenseItemBinding
 import com.example.milkflow.model.ExpenseModel
 import com.example.milkflow.utils.ColorsUtil
+import com.example.milkflow.utils.myToast
 
 class ExpenseAdapter(
     private val onDeleteExpense: (ExpenseModel) -> Unit,
@@ -24,6 +26,16 @@ class ExpenseAdapter(
             onEditExpense: (ExpenseModel) -> Unit
         ) {
 
+            itemBinding.nameItem.setOnClickListener {
+                onEditExpense(expenseModel)
+//                myToast(itemBinding.root.context, "${expenseModel.itemName}", R.drawable.icons_supplier)
+            }
+
+            itemBinding.amount.setOnClickListener {
+                onEditExpense(expenseModel)
+
+            }
+
             itemBinding.expenseModel = expenseModel
 
             itemBinding.root.setOnLongClickListener {
@@ -31,13 +43,7 @@ class ExpenseAdapter(
                 true
             }
 
-            itemBinding.nameItem.setOnClickListener {
-                onEditExpense(expenseModel)
-            }
 
-            itemBinding.amount.setOnClickListener {
-                onEditExpense(expenseModel)
-            }
 
             itemBinding.executePendingBindings()
 
