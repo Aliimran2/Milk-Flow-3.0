@@ -57,8 +57,8 @@ object DialogUtils {
             .setCancelable(false)
             .setPositiveButton("Save") { _, _ ->
 
-                val itemName = binding.itemNameTv.text.toString()
-                val expense = binding.itemAmount.text.toString().toIntOrNull() ?: 0
+                val itemName = binding.itemNameEt.text.toString()
+                val expense = binding.itemAmountEt.text.toString().toIntOrNull() ?: 0
 
                 if (itemName.isNotEmpty() && expense != 0 ) {
                     val expenseModel = ExpenseModel(itemName = itemName, itemAmount = expense)
@@ -132,8 +132,8 @@ object DialogUtils {
         val inflater = LayoutInflater.from(context)
         val binding = AddExpenseDialogBinding.inflate(inflater)
 
-        binding.itemNameTv.setText(expenseModel.itemName)
-        binding.itemAmount.setText(expenseModel.itemAmount)
+        binding.itemNameEt.setText(expenseModel.itemName)
+        binding.itemAmountEt.setText(expenseModel.itemAmount)
 
 
         AlertDialog.Builder(context)
@@ -141,8 +141,8 @@ object DialogUtils {
             .setView(binding.root)
             .setCancelable(false)
             .setPositiveButton("Save") { _, _ ->
-                val item = binding.itemNameTv.text.toString()
-                val amount = binding.itemAmount.text.toString().toIntOrNull() ?: 0
+                val item = binding.itemNameEt.text.toString()
+                val amount = binding.itemAmountEt.text.toString().toIntOrNull() ?: 0
 
 
                 if (item.isNotEmpty() && amount != 0 ) {

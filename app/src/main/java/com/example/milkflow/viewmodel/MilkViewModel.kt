@@ -67,7 +67,7 @@ class MilkViewModel(private val repository: MilkRepository):ViewModel() {
         _totalQuantity.value = persons.sumOf { it.personQuantity }
     }
 
-    fun updateExpense(expense:List<ExpenseModel>){
+    fun updateExpenseTotal(expense:List<ExpenseModel>){
         _totalExpenditure.value = expense.sumOf { it.itemAmount }
     }
 

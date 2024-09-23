@@ -24,13 +24,6 @@ class ExpenseAdapter(
             onEditExpense: (ExpenseModel) -> Unit
         ) {
 
-            itemBinding.expenseModel = expenseModel
-
-            itemBinding.root.setOnLongClickListener {
-                onDeleteExpense(expenseModel)
-                true
-            }
-
             itemBinding.nameItem.setOnClickListener {
                 onEditExpense(expenseModel)
             }
@@ -38,6 +31,15 @@ class ExpenseAdapter(
             itemBinding.amount.setOnClickListener {
                 onEditExpense(expenseModel)
             }
+
+            itemBinding.expenseModel = expenseModel
+
+            itemBinding.root.setOnLongClickListener {
+                onDeleteExpense(expenseModel)
+                true
+            }
+
+
 
             itemBinding.executePendingBindings()
 
