@@ -2,8 +2,10 @@ package com.example.milkflow.utils
 
 import android.app.AlertDialog
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
+import com.example.milkflow.R
 import com.example.milkflow.databinding.AddExpenseDialogBinding
 import com.example.milkflow.databinding.AddPersonDialogBinding
 import com.example.milkflow.model.ExpenseModel
@@ -57,8 +59,8 @@ object DialogUtils {
             .setCancelable(false)
             .setPositiveButton("Save") { _, _ ->
 
-                val itemName = binding.itemNameTv.text.toString()
-                val expense = binding.itemAmount.text.toString().toIntOrNull() ?: 0
+                val itemName = binding.itemNameEt.text.toString()
+                val expense = binding.itemAmountEt.text.toString().toIntOrNull() ?: 0
 
                 if (itemName.isNotEmpty() && expense != 0 ) {
                     val expenseModel = ExpenseModel(itemName = itemName, itemAmount = expense)
@@ -132,8 +134,8 @@ object DialogUtils {
         val inflater = LayoutInflater.from(context)
         val binding = AddExpenseDialogBinding.inflate(inflater)
 
-        binding.itemNameTv.setText(expenseModel.itemName)
-        binding.itemAmount.setText(expenseModel.itemAmount)
+        binding.itemNameEt.setText(expenseModel.itemName)
+        binding.itemAmountEt.setText(expenseModel.itemAmount.toString())
 
 
         AlertDialog.Builder(context)
@@ -141,8 +143,8 @@ object DialogUtils {
             .setView(binding.root)
             .setCancelable(false)
             .setPositiveButton("Save") { _, _ ->
-                val item = binding.itemNameTv.text.toString()
-                val amount = binding.itemAmount.text.toString().toIntOrNull() ?: 0
+                val item = binding.itemNameEt.text.toString()
+                val amount = binding.itemAmountEt.text.toString().toIntOrNull() ?: 0
 
 
                 if (item.isNotEmpty() && amount != 0 ) {
@@ -152,7 +154,7 @@ object DialogUtils {
                         itemAmount = amount,
                     )
                     viewModel.updateItem(updatedExpense)
-                    Toast.makeText(context, "Edited successfully", Toast.LENGTH_SHORT).show()
+
 
                 } else {
                     Toast.makeText(context, "Please fill all fields", Toast.LENGTH_LONG).show()

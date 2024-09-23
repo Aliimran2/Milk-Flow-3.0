@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.milkflow.R
 import com.example.milkflow.adapter.MilkPersonAdapter
 import com.example.milkflow.database.PersonDatabase
 import com.example.milkflow.databinding.FragmentCollectorBinding
 import com.example.milkflow.repository.MilkRepository
 import com.example.milkflow.utils.DialogUtils
+import com.example.milkflow.utils.myToast
 import com.example.milkflow.viewmodel.MilkViewModel
 import com.example.milkflow.viewmodel.MilkViewModelFactory
 
@@ -20,6 +22,7 @@ class CollectorFragment : Fragment() {
     private var _binding: FragmentCollectorBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: MilkPersonAdapter
+    private lateinit var viewModel: MilkViewModel
 
 
     override fun onCreateView(
@@ -31,28 +34,34 @@ class CollectorFragment : Fragment() {
         val dao = PersonDatabase.getInstance(requireContext()).getDao()
         val expenseDao = PersonDatabase.getInstance(requireContext()).getExpenseDao()
         val factory = MilkRepository(dao, expenseDao)
-        val viewModel =
-            ViewModelProvider(this, MilkViewModelFactory(factory))[MilkViewModel::class.java]
+        viewModel = ViewModelProvider(
+                requireActivity(),
+                MilkViewModelFactory(factory)
+            )[MilkViewModel::class.java]
 
         binding.collectoVM = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
         binding.addButton.setOnClickListener {
-            DialogUtils.addPersonDialog(requireContext(),viewModel,"Collector")
+            DialogUtils.addPersonDialog(requireContext(), viewModel, "Collector")
         }
 
         viewModel.getCollectors().observe(viewLifecycleOwner) {
             adapter.submitList(it)
-            viewModel.updateTotal(it)
+            viewModel.updateCollectorTotal(it)
         }
 
         adapter = MilkPersonAdapter(
             onDeletePerson = { person ->
                 viewModel.delete(person)
-                Toast.makeText(requireContext(), "${person.personName} is deleted", Toast.LENGTH_SHORT).show()
+                myToast(
+                    requireContext(),
+                    "${person.personName} is deleted",
+                    R.drawable.baseline_delete_24
+                )
             },
             onEditPerson = { person ->
-                DialogUtils.editPersonDialog(requireContext(), viewModel,person, "Collector")
+                DialogUtils.editPersonDialog(requireContext(), viewModel, person, "Collector")
 
             }
         )

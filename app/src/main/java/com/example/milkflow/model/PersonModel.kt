@@ -19,8 +19,8 @@ data class PersonModel(
 data class ExpenseModel(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    var itemName : String = "",
-    var itemAmount : Int = 0,
+    var itemName : String,
+    var itemAmount : Int,
 
 )
 
