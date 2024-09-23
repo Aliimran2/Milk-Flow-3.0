@@ -44,7 +44,6 @@ class SupplierFragment : Fragment() {
         viewModel.getSuppliers().observe(viewLifecycleOwner) {
             adapter.submitList(it)
             viewModel.updateTotal(it)
-//             binding.totalSumSupplierTv.text= "Total: ${viewModel.totalAmount}"
         }
 
         recyclerView = binding.recyclerView

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.milkflow.model.ExpenseModel
 import com.example.milkflow.model.PersonModel
 import com.example.milkflow.repository.MilkRepository
 import kotlinx.coroutines.launch
@@ -20,6 +21,10 @@ class MilkViewModel(private val repository: MilkRepository):ViewModel() {
     val totalCollectorAmount :LiveData<Int>
         get() = _totalCollectorAmount
 
+    private val _totalExpenditure = MutableLiveData<Int>()
+    val totalExpenditure : LiveData<Int>
+        get() = _totalExpenditure
+
     private val _noOfSuppliers = MutableLiveData<Int>()
     val noOfSuppliers : LiveData<Int> get() = _noOfSuppliers
 
@@ -28,6 +33,7 @@ class MilkViewModel(private val repository: MilkRepository):ViewModel() {
 
     fun getSuppliers() : LiveData<List<PersonModel>> = repository.getPersonsByType("Supplier")
     fun getCollectors() : LiveData<List<PersonModel>> = repository.getPersonsByType("Collector")
+    fun getAllExpenses() : LiveData<List<ExpenseModel>> = repository.getAllExpense()
 
     fun insert(personModel: PersonModel) = viewModelScope.launch{
         repository.insert(personModel)

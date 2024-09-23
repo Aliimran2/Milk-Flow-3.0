@@ -7,6 +7,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import com.example.milkflow.model.ExpenseModel
 import com.example.milkflow.model.PersonModel
 
 @Dao
@@ -24,5 +25,20 @@ interface MilkPersonDao {
     @Query("SELECT * FROM person_table WHERE personType = :type")
     fun getPersonsByType(type:String):LiveData<List<PersonModel>>
 
+}
+
+@Dao
+interface ExpenseDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertExpense(expenseModel: ExpenseModel)
+
+    @Delete
+    suspend fun deleteExpense(expenseModel: ExpenseModel)
+
+    @Update
+    suspend fun updateExpense(expenseModel: ExpenseModel)
+
+    @Query("SELECT * FROM expense_table ORDER BY itemPrice ASC")
+    fun getAllExpenditures() : LiveData<List<ExpenseModel>>
 
 }

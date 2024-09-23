@@ -11,6 +11,7 @@ import com.example.milkflow.model.PersonModel
 abstract class PersonDatabase : RoomDatabase() {
 
     abstract fun getDao(): MilkPersonDao
+    abstract fun getExpenseDao() : ExpenseDao
 
 
     companion object {

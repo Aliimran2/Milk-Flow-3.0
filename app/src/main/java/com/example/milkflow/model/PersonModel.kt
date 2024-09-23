@@ -7,13 +7,19 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "person_table")
 data class PersonModel(
     @PrimaryKey(autoGenerate = true)
-    val id : Int = 0,
-    var personName : String = "",
-    var personRate : Int = 0,
-    var personQuantity : Int = 0,
-    val personType : String //collector or supplier or expenses
+    val id: Int = 0,
+    var personName: String = "",
+    var personRate: Int = 0,
+    var personQuantity: Int = 0,
+    val personType: String
 )
 
-//enum class PersonType {
-//    COLLECTOR, SUPPLIER
-//}
+
+@Entity(tableName = "expense_table")
+data class ExpenseModel(
+    @PrimaryKey(autoGenerate = false)
+    val id: Int = 0,
+    var itemName : String = "",
+    var itemPrice : Int = 0
+)
+
