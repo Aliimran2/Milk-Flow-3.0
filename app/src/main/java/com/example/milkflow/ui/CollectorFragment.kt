@@ -29,7 +29,8 @@ class CollectorFragment : Fragment() {
         _binding = FragmentCollectorBinding.inflate(inflater, container, false)
 
         val dao = PersonDatabase.getInstance(requireContext()).getDao()
-        val factory = MilkRepository(dao)
+        val expenseDao = PersonDatabase.getInstance(requireContext()).getExpenseDao()
+        val factory = MilkRepository(dao, expenseDao)
         val viewModel =
             ViewModelProvider(this, MilkViewModelFactory(factory))[MilkViewModel::class.java]
 

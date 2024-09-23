@@ -156,6 +156,7 @@
             android:backgroundTint="#F06292"
             android:text="Add new Supplier"
             android:textSize="16sp"
+            android:textAllCaps="true"
             android:layout_marginTop="4dp"
             android:textColor="@color/white" />
 

@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.milkflow.databinding.MilkpersonItemBinding
+import com.example.milkflow.model.ExpenseModel
 import com.example.milkflow.model.PersonModel
 import com.example.milkflow.utils.ColorsUtil
 
@@ -13,14 +14,17 @@ class MilkPersonAdapter(
     private val onDeletePerson: (PersonModel) -> Unit,
     private val onEditPerson: (PersonModel) -> Unit
 ) :
-    ListAdapter<PersonModel,MilkPersonAdapter.MilkPersonVH>(PersonDiffUtil()) {
+    ListAdapter<PersonModel, MilkPersonAdapter.MilkPersonVH>(PersonDiffUtil()) {
 
     class MilkPersonVH(val itemBinding: MilkpersonItemBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
 
-
-        fun bind(person: PersonModel, onDeletePerson: (PersonModel) -> Unit, onEditPerson: (PersonModel) -> Unit) {
+        fun bind(
+            person: PersonModel,
+            onDeletePerson: (PersonModel) -> Unit,
+            onEditPerson: (PersonModel) -> Unit
+        ) {
             itemBinding.personModel = person
 
             itemBinding.nameItem.setOnClickListener {
@@ -35,6 +39,8 @@ class MilkPersonAdapter(
                 onDeletePerson(person)
                 true
             }
+
+            itemBinding.executePendingBindings()
 
         }
 

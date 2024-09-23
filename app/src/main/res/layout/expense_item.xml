@@ -4,10 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable
-            name="personModel"
-            type="com.example.milkflow.model.PersonModel" />
 
+        <variable
+            name="expenseModel"
+            type="com.example.milkflow.model.ExpenseModel" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -33,7 +33,7 @@
                 android:backgroundTint="@color/white"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
-                android:text="@{String.valueOf(personModel.personName.charAt(0)), default=`A`}"
+                android:text="@{String.valueOf(expenseModel.itemName.charAt(0)), default=`A`}"
                 android:textAllCaps="true"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -46,22 +46,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/poppins"
-                android:text="@{personModel.personName, default = `Ali Imran`}"
+                android:text="@{expenseModel.itemName, default = `Ali Imran`}"
                 android:textAllCaps="true"
-                app:layout_constraintBottom_toBottomOf="@+id/person_quantity"
+                app:layout_constraintBottom_toBottomOf="@+id/amount"
                 app:layout_constraintStart_toEndOf="@id/name_char"
-                app:layout_constraintTop_toTopOf="@+id/person_quantity"
+                app:layout_constraintTop_toTopOf="@+id/amount"
                 app:layout_constraintVertical_bias="0.0"
                 style="@style/font_style_1" />
 
             <TextView
-                android:id="@+id/person_quantity"
+                android:id="@+id/amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/poppins"
-                android:text="@{String.valueOf(personModel.personQuantity)+` liters`, default = `123 liters`}"
+                android:text="@{`Rs. `+String.valueOf(expenseModel.itemAmount), default = `123 liters`}"
                 style="@style/font_style_1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -16,10 +16,10 @@ class MilkViewModel(private val repository: MilkRepository):ViewModel() {
     val totalAmount :LiveData<Int>
         get() = _totalAmount
 
-
-    private val _totalCollectorAmount =MutableLiveData<Int>()
-    val totalCollectorAmount :LiveData<Int>
-        get() = _totalCollectorAmount
+//
+//    private val _totalCollectorAmount =MutableLiveData<Int>()
+//    val totalCollectorAmount :LiveData<Int>
+//        get() = _totalCollectorAmount
 
     private val _totalExpenditure = MutableLiveData<Int>()
     val totalExpenditure : LiveData<Int>
@@ -39,13 +39,26 @@ class MilkViewModel(private val repository: MilkRepository):ViewModel() {
         repository.insert(personModel)
     }
 
-    fun delete(personModel: PersonModel) = viewModelScope.launch {
+    fun delete(personModel: PersonModel) = viewModelScope.launch{
         repository.delete(personModel)
     }
 
     fun update(personModel: PersonModel) = viewModelScope.launch {
         repository.update(personModel)
     }
+
+    fun insertItem(expenseModel: ExpenseModel) = viewModelScope.launch{
+        repository.insertExpense(expenseModel)
+    }
+
+    fun deleteItem(expenseModel: ExpenseModel) = viewModelScope.launch {
+        repository.deleteExpense(expenseModel)
+    }
+
+    fun updateItem(expenseModel: ExpenseModel) = viewModelScope.launch {
+        repository.updateExpense(expenseModel)
+    }
+
 
     fun updateTotal(persons : List<PersonModel>){
 
@@ -54,19 +67,9 @@ class MilkViewModel(private val repository: MilkRepository):ViewModel() {
         _totalQuantity.value = persons.sumOf { it.personQuantity }
     }
 
-    fun updateCollectorTotal(persons : List<PersonModel>){
-
-        _totalCollectorAmount.value = persons.sumOf { it.personRate * it.personQuantity }
-        _noOfSuppliers.value = persons.size
-        _totalQuantity.value = persons.sumOf { it.personQuantity }
+    fun updateExpense(expense:List<ExpenseModel>){
+        _totalExpenditure.value = expense.sumOf { it.itemAmount }
     }
-
-
-
-
-
-
-
 
 }
 

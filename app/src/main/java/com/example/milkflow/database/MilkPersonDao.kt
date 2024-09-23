@@ -38,7 +38,7 @@ interface ExpenseDao {
     @Update
     suspend fun updateExpense(expenseModel: ExpenseModel)
 
-    @Query("SELECT * FROM expense_table ORDER BY itemPrice ASC")
+    @Query("SELECT * FROM expense_table ORDER BY itemAmount ASC")
     fun getAllExpenditures() : LiveData<List<ExpenseModel>>
 
 }

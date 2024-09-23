@@ -17,9 +17,10 @@ data class PersonModel(
 
 @Entity(tableName = "expense_table")
 data class ExpenseModel(
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     var itemName : String = "",
-    var itemPrice : Int = 0
+    var itemAmount : Int = 0,
+
 )
 

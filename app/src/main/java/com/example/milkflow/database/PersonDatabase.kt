@@ -4,10 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.milkflow.model.ExpenseModel
 import com.example.milkflow.model.PersonModel
 
 
-@Database(entities = [PersonModel::class], version = 1, exportSchema = false)
+@Database(entities = [PersonModel::class, ExpenseModel::class], version = 1, exportSchema = false)
 abstract class PersonDatabase : RoomDatabase() {
 
     abstract fun getDao(): MilkPersonDao

@@ -30,7 +30,8 @@ class SupplierFragment : Fragment() {
         _binding = FragmentSupplierBinding.inflate(inflater, container, false)
 
         val dao = PersonDatabase.getInstance(requireContext()).getDao()
-        val factory = MilkRepository(dao)
+        val expenseDao = PersonDatabase.getInstance(requireContext()).getExpenseDao()
+        val factory = MilkRepository(dao, expenseDao)
         val viewModel =
             ViewModelProvider(this, MilkViewModelFactory(factory))[MilkViewModel::class.java]
 
