@@ -45,7 +45,7 @@ class ExpenseFragment : Fragment() {
 
         viewModel.getAllExpenses().observe(viewLifecycleOwner){
             adapter.submitList(it)
-            Log.d("MYLIST", "$it")
+
             viewModel.updateExpense(it)
 
         }

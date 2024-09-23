@@ -42,7 +42,7 @@
                         style="@style/font_size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{`Rs. `+String.valueOf(expenseModel.totalAmount), default=`Rs 123`}"
+                        android:text="@{`Rs. `+String.valueOf(expenseModel.totalExpenditure), default=`Rs 123`}"
                         android:layout_alignParentEnd="true"
                         />
 

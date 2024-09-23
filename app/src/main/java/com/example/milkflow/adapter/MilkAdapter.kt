@@ -63,7 +63,7 @@ class MilkPersonAdapter(
         val currentPerson = getItem(position)
         holder.bind(currentPerson, onDeletePerson, onEditPerson)
 
-        holder.itemBinding.nameChar.background.setTint(ColorsUtil.getRandomColor())
+        holder.itemBinding.cardView.background.setTint(ColorsUtil.getRandomColor())
 
 
     }
