@@ -15,6 +15,7 @@ import com.example.milkflow.database.PersonDatabase
 import com.example.milkflow.databinding.FragmentExpenseBinding
 import com.example.milkflow.repository.MilkRepository
 import com.example.milkflow.utils.DialogUtils
+import com.example.milkflow.utils.myToast
 import com.example.milkflow.viewmodel.MilkViewModel
 import com.example.milkflow.viewmodel.MilkViewModelFactory
 
@@ -45,8 +46,7 @@ class ExpenseFragment : Fragment() {
 
         viewModel.getAllExpenses().observe(viewLifecycleOwner){
             adapter.submitList(it)
-
-            viewModel.updateExpense(it)
+            viewModel.updateExpenseTotal(it)
 
         }
 
@@ -54,9 +54,10 @@ class ExpenseFragment : Fragment() {
         adapter = ExpenseAdapter(
             onDeleteExpense = { item ->
                 viewModel.deleteItem(item)
+                myToast(requireContext(),"${item.itemName} is deleted", R.drawable.baseline_delete_24)
             },
             onEditExpense = { item ->
-                Toast.makeText(requireContext(), "${item.itemName} is clicked", Toast.LENGTH_SHORT).show()
+                DialogUtils.editExpenseDialog(requireContext(),viewModel, item)
 
             }
         )
