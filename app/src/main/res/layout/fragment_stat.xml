@@ -1,20 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/blue"
-    android:orientation="vertical"
-    tools:context=".ui.StatFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="statModel"
+            type="com.example.milkflow.viewmodel.MilkViewModel" />
 
-    <TextView
-        android:id="@+id/difference_text"
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:textColor="@color/white"
-        android:text="TExt"
-        android:textSize="50sp" />
+        android:orientation="vertical"
+        android:background="#232323"
+        android:gravity="center"
+        android:padding="16dp"
+        tools:context=".ui.StatFragment">
 
-</LinearLayout>
+
+
+        <TextView
+            android:id="@+id/total_expenditure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:background="@color/red"
+            android:text="@{`Inflow: `+String.valueOf(statModel.totalAmount)}"
+            android:textSize="50sp" />
+
+        <TextView
+            android:id="@+id/expenseTv"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:background="@color/red"
+            android:text="@{`Other :`+String.valueOf(statModel.totalExpenditure)}"
+            android:textSize="50sp" />
+
+
+        <TextView
+            android:id="@+id/total_gain"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:background="@color/green"
+            android:text="@{`Outflow: `+String.valueOf(statModel.totalCollectorAmount)}"
+            android:textSize="50sp" />
+
+        <TextView
+            android:id="@+id/difference_text"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:background="@color/blue"
+            android:text="@{`Profit: `+String.valueOf(statModel.difference)}"
+            android:textSize="50sp" />
+
+    </LinearLayout>
+</layout>

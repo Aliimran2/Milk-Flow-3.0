@@ -81,12 +81,12 @@ class MilkViewModel(private val repository: MilkRepository) : ViewModel() {
     }
 
     fun calculateDifference() {
-        val diff = (_totalCollectorAmount.value ?: 0) + (_totalAmount.value
-            ?: 0) - (_totalExpenditure.value ?: 0)
+        val diff = (_totalCollectorAmount.value ?: 0) - ((_totalExpenditure.value
+            ?: 0) + (_totalAmount.value
+            ?: 0))
         _difference.value = diff
 
     }
-
 
 
 }

@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
-                android:backgroundTint="#009688"
+                android:backgroundTint="@color/red"
                 android:layout_marginBottom="10dp"
                 android:elevation="20dp">
                 <RelativeLayout
@@ -112,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:backgroundTint="#009688"
+            android:backgroundTint="@color/red"
             android:text="Add new collector"
             android:textAllCaps="true"
             android:textSize="16sp"

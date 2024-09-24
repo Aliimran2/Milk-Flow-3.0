@@ -33,10 +33,27 @@ class StatFragment : Fragment() {
         val viewModel =
             ViewModelProvider(requireActivity(), MilkViewModelFactory(factory))[MilkViewModel::class.java]
 
-        viewModel.difference.observe(viewLifecycleOwner){
+        binding.statModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
+//        viewModel.difference.observe(viewLifecycleOwner) { differenceValue ->
+//            binding.differenceText.text = differenceValue.toString()
+//            Log.d("Difference", "Difference value: $differenceValue")
+//        }
+
+        viewModel.getCollectors().observe(viewLifecycleOwner) { collectors ->
+            viewModel.updateCollectorTotal(collectors)
             viewModel.calculateDifference()
-            binding.differenceText.text = it.toString()
-            Log.d("Difference", "$it")
+        }
+
+        viewModel.getSuppliers().observe(viewLifecycleOwner) { suppliers ->
+            viewModel.updateTotal(suppliers)
+            viewModel.calculateDifference()
+        }
+
+        viewModel.getAllExpenses().observe(viewLifecycleOwner) { expenses ->
+            viewModel.updateExpenseTotal(expenses)
+            viewModel.calculateDifference()
         }
 
 
