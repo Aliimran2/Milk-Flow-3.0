@@ -13,10 +13,12 @@ import com.example.milkflow.databinding.FragmentStatBinding
 import com.example.milkflow.repository.MilkRepository
 import com.example.milkflow.viewmodel.MilkViewModel
 import com.example.milkflow.viewmodel.MilkViewModelFactory
+import com.github.mikephil.charting.charts.PieChart
 
 
 class StatFragment : Fragment() {
 
+    private lateinit var pieChart: PieChart
     private var _binding : FragmentStatBinding? = null
     val binding get() = _binding!!
 
@@ -36,10 +38,6 @@ class StatFragment : Fragment() {
         binding.statModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-//        viewModel.difference.observe(viewLifecycleOwner) { differenceValue ->
-//            binding.differenceText.text = differenceValue.toString()
-//            Log.d("Difference", "Difference value: $differenceValue")
-//        }
 
         viewModel.getCollectors().observe(viewLifecycleOwner) { collectors ->
             viewModel.updateCollectorTotal(collectors)
