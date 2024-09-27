@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.milkflow.adapter.MilkPersonAdapter
 import com.example.milkflow.database.PersonDatabase
 import com.example.milkflow.databinding.FragmentCollectorBinding
@@ -49,7 +50,10 @@ class CollectorFragment : Fragment() {
             viewModel.updateCustomerTotal(it)
         }
 
+
+
         adapter = MilkPersonAdapter(
+            isSupplier = false,
             onDeletePerson = { person ->
                 viewModel.delete(person)
                 Toast.makeText(requireContext(), "${person.personName} is deleted", Toast.LENGTH_SHORT).show()
@@ -59,6 +63,7 @@ class CollectorFragment : Fragment() {
 
             }
         )
+
         binding.recyclerView.adapter = adapter
 
 

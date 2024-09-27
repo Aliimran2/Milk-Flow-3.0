@@ -28,7 +28,7 @@ class ExpenseAdapter(
 
             itemBinding.nameItem.setOnClickListener {
                 onEditExpense(expenseModel)
-//                myToast(itemBinding.root.context, "${expenseModel.itemName}", R.drawable.icons_supplier)
+
             }
 
             itemBinding.amount.setOnClickListener {
@@ -67,7 +67,7 @@ class ExpenseAdapter(
         val currentItem = getItem(position)
 
         holder.bind(currentItem, onDeleteExpense,onEditExpense)
-        holder.itemBinding.nameChar.background.setTint(ColorsUtil.getRandomColor())
+        holder.itemBinding.cardViewExp.background.setTint(ColorsUtil.getRandomColorFromPalette())
 
     }
 }

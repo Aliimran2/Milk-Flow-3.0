@@ -1,5 +1,6 @@
 package com.example.milkflow.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -11,6 +12,7 @@ import com.example.milkflow.utils.ColorsUtil
 
 
 class MilkPersonAdapter(
+    private val isSupplier: Boolean,
     private val onDeletePerson: (PersonModel) -> Unit,
     private val onEditPerson: (PersonModel) -> Unit
 ) :
@@ -62,8 +64,12 @@ class MilkPersonAdapter(
     override fun onBindViewHolder(holder: MilkPersonVH, position: Int) {
         val currentPerson = getItem(position)
         holder.bind(currentPerson, onDeletePerson, onEditPerson)
-
-        holder.itemBinding.cardView.background.setTint(ColorsUtil.getRandomColor())
+//        if(isSupplier) {
+//            holder.itemBinding.root.setBackgroundColor(Color.parseColor("#FFCEBA"))
+//        }else {
+//            holder.itemBinding.root.setBackgroundColor(Color.parseColor("#A8E6AA"))
+//        }
+        holder.itemBinding.cardView.background.setTint(ColorsUtil.getRandomColorFromPalette())
 
 
     }

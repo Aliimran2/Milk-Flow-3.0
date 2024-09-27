@@ -49,7 +49,9 @@ class SupplierFragment : Fragment() {
         }
 
         recyclerView = binding.recyclerView
-        adapter = MilkPersonAdapter(onDeletePerson = { person ->
+        adapter = MilkPersonAdapter(
+            isSupplier = true,
+            onDeletePerson = { person ->
             viewModel.delete(person)
             Toast.makeText(requireContext(), "${person.personName} is deleted", Toast.LENGTH_SHORT).show()
         }, onEditPerson = { person ->
