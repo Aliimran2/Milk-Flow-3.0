@@ -2,23 +2,19 @@ package com.example.milkflow.ui
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.example.milkflow.R
 import com.example.milkflow.database.PersonDatabase
 import com.example.milkflow.databinding.FragmentStatBinding
 import com.example.milkflow.repository.MilkRepository
 import com.example.milkflow.viewmodel.MilkViewModel
 import com.example.milkflow.viewmodel.MilkViewModelFactory
-import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
-import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 
@@ -76,7 +72,7 @@ class StatFragment : Fragment() {
                 centerText = "Summary"
                 isRotationEnabled = true
                 setTouchEnabled(true)
-                animateY(5000, com.github.mikephil.charting.animation.Easing.EaseInOutQuad)
+                animateY(3000, com.github.mikephil.charting.animation.Easing.EaseInOutQuad)
 
                 legend.apply {
                     verticalAlignment = Legend.LegendVerticalAlignment.BOTTOM
@@ -94,13 +90,13 @@ class StatFragment : Fragment() {
         }
 
         viewModel.getCollectors().observe(viewLifecycleOwner) { collectors ->
-            viewModel.updateCollectorTotal(collectors)
+            viewModel.updateCustomerTotal(collectors)
             viewModel.calculateDifference()
 
         }
 
         viewModel.getSuppliers().observe(viewLifecycleOwner) { suppliers ->
-            viewModel.updateTotal(suppliers)
+            viewModel.updateSupplierTotal(suppliers)
             viewModel.calculateDifference()
         }
 

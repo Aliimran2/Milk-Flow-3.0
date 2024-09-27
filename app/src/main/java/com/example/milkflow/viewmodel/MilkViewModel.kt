@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.milkflow.R
 import com.example.milkflow.model.ExpenseModel
 import com.example.milkflow.model.PersonModel
 import com.example.milkflow.repository.MilkRepository
@@ -22,8 +21,8 @@ class MilkViewModel(private val repository: MilkRepository) : ViewModel() {
     private val _totalSupplierAmount = MutableLiveData<Int>()
     val totalSupplierAmount: LiveData<Int> get() = _totalSupplierAmount
 
-    private val _totalCollectorAmount = MutableLiveData<Int>()
-    val totalCollectorAmount: LiveData<Int> get() = _totalCollectorAmount
+    private val _totalCustomerAmount = MutableLiveData<Int>()
+    val totalCustomerAmount: LiveData<Int> get() = _totalCustomerAmount
 
     private val _totalExpenditure = MutableLiveData<Int>()
     val totalExpenditure: LiveData<Int> get() = _totalExpenditure
@@ -40,32 +39,34 @@ class MilkViewModel(private val repository: MilkRepository) : ViewModel() {
     private val _totalSupplierQuantity = MutableLiveData<Int>()
     val totalSupplierQuantity: LiveData<Int> get() = _totalSupplierQuantity
 
-    private val _totalCollectorQuantity = MutableLiveData<Int>()
-    val totalCollectorQuantity: LiveData<Int> get() = _totalCollectorQuantity
+    private val _totalCustomerQuantity = MutableLiveData<Int>()
+    val totalCustomerQuantity: LiveData<Int> get() = _totalCustomerQuantity
 
     val pieEntriesLiveData = MediatorLiveData<List<PieEntry>>()
     init {
         pieEntriesLiveData.addSource(_totalSupplierQuantity){updateEntries()}
-        pieEntriesLiveData.addSource(_totalCollectorQuantity){updateEntries()}
+        pieEntriesLiveData.addSource(_totalCustomerQuantity){updateEntries()}
         pieEntriesLiveData.addSource(_totalExpenditure){updateEntries()}
         pieEntriesLiveData.addSource(_difference){updateEntries()}
     }
 
     private fun updateEntries(){
         val supplier = _totalSupplierAmount.value?:0
-        val collector = _totalCollectorQuantity.value?:0
+        val collector = _totalCustomerQuantity.value?:0
         val expenses = _totalExpenditure.value?:0
         val profitOrLoss = _difference.value?:0
 
         val pieEntries = listOf(
-            PieEntry(supplier.toFloat(), R.string.suppliers),
-            PieEntry(collector.toFloat(), R.string.customers),
-            PieEntry(expenses.toFloat(), R.string.expenses),
-            PieEntry(profitOrLoss.toFloat(), R.string.stat)
+            PieEntry(supplier.toFloat(), "Supplier"),
+            PieEntry(collector.toFloat(), "Customer"),
+            PieEntry(expenses.toFloat(), "Expense"),
+//            PieEntry(profitOrLoss.toFloat(), "Profit")
         )
 
         pieEntriesLiveData.value = pieEntries
     }
+
+
 
 
 
@@ -81,16 +82,16 @@ class MilkViewModel(private val repository: MilkRepository) : ViewModel() {
 
     fun updateItem(expenseModel: ExpenseModel) = viewModelScope.launch { repository.updateExpense(expenseModel) }
 
-    fun updateTotal(persons: List<PersonModel>) {
+    fun updateSupplierTotal(persons: List<PersonModel>) {
 
         _totalSupplierAmount.value = persons.sumOf { it.personRate * it.personQuantity }
         _totalSupplierQuantity.value = persons.sumOf { it.personQuantity }
         _noOfSuppliers.value = persons.size
     }
 
-    fun updateCollectorTotal(persons: List<PersonModel>) {
-        _totalCollectorAmount.value = persons.sumOf { it.personRate * it.personQuantity }
-        _totalCollectorQuantity.value = persons.sumOf { it.personQuantity }
+    fun updateCustomerTotal(persons: List<PersonModel>) {
+        _totalCustomerAmount.value = persons.sumOf { it.personRate * it.personQuantity }
+        _totalCustomerQuantity.value = persons.sumOf { it.personQuantity }
         _noOfCollectors.value = persons.size
     }
 
@@ -100,7 +101,7 @@ class MilkViewModel(private val repository: MilkRepository) : ViewModel() {
     }
 
     fun calculateDifference() {
-        val diff = (_totalCollectorAmount.value ?: 0) - ((_totalExpenditure.value
+        val diff = (_totalCustomerAmount.value ?: 0) - ((_totalExpenditure.value
             ?: 0) + (_totalSupplierAmount.value
             ?: 0))
         _difference.value = diff

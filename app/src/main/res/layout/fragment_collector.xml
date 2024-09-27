@@ -44,7 +44,7 @@
                         style="@style/font_size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{`Rs. `+String.valueOf(collectoVM.totalCollectorAmount), default=`Rs 123`}"
+                        android:text="@{`Rs. `+String.valueOf(collectoVM.totalCustomerAmount), default=`Rs 123`}"
                         android:layout_alignParentEnd="true"
                         />
 
@@ -79,7 +79,7 @@
                         style="@style/font_size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{String.valueOf(collectoVM.totalCollectorQuantity+` liters`), default=`Rs 123`}"
+                        android:text="@{String.valueOf(collectoVM.totalCustomerQuantity+` liters`), default=`Rs 123`}"
                         android:layout_alignParentEnd="true"
                         android:layout_below="@+id/total_sum_supplier_tv"
                         />

@@ -4,5 +4,7 @@
     <string name="customers">Customers</string>
     <string name="stat">Summary</string>
     <string name="expenses">Expenses</string>
+    <string name="profit">Profit</string>
+    <string name="loss">Loss</string>
 
 </resources>
