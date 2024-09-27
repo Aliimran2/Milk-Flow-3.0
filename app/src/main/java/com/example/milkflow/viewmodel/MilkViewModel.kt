@@ -14,6 +14,15 @@ import kotlinx.coroutines.launch
 
 class MilkViewModel(private val repository: MilkRepository) : ViewModel() {
 
+    private val _navigateToFragment = MutableLiveData<Int>()
+    val navigateToFragment : LiveData<Int> get() = _navigateToFragment
+
+    fun navigateTo(position : Int) {
+        _navigateToFragment.value = position
+    }
+
+
+
     fun getSuppliers(): LiveData<List<PersonModel>> = repository.getPersonsByType("Supplier")
     fun getCollectors(): LiveData<List<PersonModel>> = repository.getPersonsByType("Collector")
     fun getAllExpenses(): LiveData<List<ExpenseModel>> = repository.getAllExpense()

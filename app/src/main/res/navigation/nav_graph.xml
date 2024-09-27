@@ -24,5 +24,15 @@
         android:id="@+id/statFragment"
         android:name="com.example.milkflow.ui.StatFragment"
         android:label="Stats"
-        tools:layout="@layout/fragment_stat" />
+        tools:layout="@layout/fragment_stat" >
+        <action
+            android:id="@+id/action_statFragment_to_expenseFragment"
+            app:destination="@id/expenseFragment" />
+        <action
+            android:id="@+id/action_statFragment_to_collectorFragment"
+            app:destination="@id/collectorFragment" />
+        <action
+            android:id="@+id/action_statFragment_to_supplierFragment"
+            app:destination="@id/supplierFragment" />
+    </fragment>
 </navigation>

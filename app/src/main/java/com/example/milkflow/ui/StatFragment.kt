@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.example.milkflow.R
 import com.example.milkflow.database.PersonDatabase
 import com.example.milkflow.databinding.FragmentStatBinding
 import com.example.milkflow.repository.MilkRepository
@@ -43,6 +46,18 @@ class StatFragment : Fragment() {
 
         binding.statModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        binding.supplierView.setOnClickListener {
+            viewModel.navigateTo(0)
+        }
+
+        binding.expenseView.setOnClickListener {
+            viewModel.navigateTo(1)
+        }
+
+        binding.customerView.setOnClickListener {
+            viewModel.navigateTo(2)
+        }
 
 
         viewModel.pieEntriesLiveData.observe(viewLifecycleOwner) {

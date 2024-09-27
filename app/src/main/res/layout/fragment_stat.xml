@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:elevation="12dp"
-                android:id="@+id/supplier_touch"
+                android:id="@+id/supplier_view"
                 app:cardCornerRadius="8dp">
 
                 <RelativeLayout
@@ -89,6 +89,7 @@
                 android:layout_height="wrap_content"
                 android:elevation="12dp"
                 android:layout_marginTop="8dp"
+                android:id="@+id/expense_view"
                 app:cardCornerRadius="8dp">
 
                 <RelativeLayout
@@ -150,6 +151,7 @@
                 android:layout_height="wrap_content"
                 android:elevation="12dp"
                 android:layout_marginTop="8dp"
+                android:id="@+id/customer_view"
                 app:cardCornerRadius="8dp">
 
                 <RelativeLayout
@@ -210,6 +212,7 @@
                 android:layout_height="wrap_content"
                 android:elevation="12dp"
                 android:layout_marginTop="8dp"
+                android:id="@+id/profit_view"
                 app:cardCornerRadius="8dp">
 
                 <RelativeLayout
