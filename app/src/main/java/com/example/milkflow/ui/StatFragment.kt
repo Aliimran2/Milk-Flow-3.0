@@ -29,7 +29,7 @@ class StatFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
+
         _binding = FragmentStatBinding.inflate(inflater, container, false)
 
         val dao = PersonDatabase.getInstance(requireContext()).getDao()

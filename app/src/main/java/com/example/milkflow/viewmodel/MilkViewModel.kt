@@ -44,15 +44,15 @@ class MilkViewModel(private val repository: MilkRepository) : ViewModel() {
 
     val pieEntriesLiveData = MediatorLiveData<List<PieEntry>>()
     init {
-        pieEntriesLiveData.addSource(_totalSupplierQuantity){updateEntries()}
-        pieEntriesLiveData.addSource(_totalCustomerQuantity){updateEntries()}
+        pieEntriesLiveData.addSource(_totalSupplierAmount){updateEntries()}
+        pieEntriesLiveData.addSource(_totalCustomerAmount){updateEntries()}
         pieEntriesLiveData.addSource(_totalExpenditure){updateEntries()}
         pieEntriesLiveData.addSource(_difference){updateEntries()}
     }
 
     private fun updateEntries(){
         val supplier = _totalSupplierAmount.value?:0
-        val collector = _totalCustomerQuantity.value?:0
+        val collector = _totalCustomerAmount.value?:0
         val expenses = _totalExpenditure.value?:0
         val profitOrLoss = _difference.value?:0
 
@@ -60,7 +60,7 @@ class MilkViewModel(private val repository: MilkRepository) : ViewModel() {
             PieEntry(supplier.toFloat(), "Supplier"),
             PieEntry(collector.toFloat(), "Customer"),
             PieEntry(expenses.toFloat(), "Expense"),
-//            PieEntry(profitOrLoss.toFloat(), "Profit")
+            PieEntry(profitOrLoss.toFloat(), "Profit")
         )
 
         pieEntriesLiveData.value = pieEntries
@@ -101,13 +101,12 @@ class MilkViewModel(private val repository: MilkRepository) : ViewModel() {
     }
 
     fun calculateDifference() {
-        val diff = (_totalCustomerAmount.value ?: 0) - ((_totalExpenditure.value
-            ?: 0) + (_totalSupplierAmount.value
-            ?: 0))
+        val diff = (_totalCustomerAmount.value ?: 0) - ((_totalExpenditure.value ?: 0) + (_totalSupplierAmount.value ?: 0))
         _difference.value = diff
 
     }
 }
+
 
 class MilkViewModelFactory(private val repository: MilkRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

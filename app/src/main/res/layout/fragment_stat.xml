@@ -35,6 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:elevation="12dp"
+                android:id="@+id/supplier_touch"
                 app:cardCornerRadius="8dp">
 
                 <RelativeLayout
@@ -195,7 +196,7 @@
                         android:layout_centerVertical="true"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:text="@{`Rs. `+String.valueOf(statModel.difference)}"
+                        android:text="@{`Rs. `+String.valueOf(statModel.totalCustomerAmount)}"
                         android:fontFamily="@font/poppins"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="16dp"/>
