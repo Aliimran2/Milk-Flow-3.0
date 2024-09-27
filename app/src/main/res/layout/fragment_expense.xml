@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
-                android:backgroundTint="@color/red"
+                android:backgroundTint="@color/red2"
                 android:layout_marginBottom="10dp"
                 android:elevation="20dp">
                 <RelativeLayout
@@ -63,7 +63,7 @@
                 android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#4CAF50" />
+                android:background="@color/red2" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="@color/red2"
             android:text="Add new expenditure"
             android:textAllCaps="true"
             android:textSize="16sp"

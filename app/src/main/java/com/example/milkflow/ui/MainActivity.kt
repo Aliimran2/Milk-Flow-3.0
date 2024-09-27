@@ -23,20 +23,20 @@ class MainActivity : AppCompatActivity() {
         TabLayoutMediator(binding.tabLayout, binding.viewPager) {tab, position ->
             when (position){
                 0 -> {
-                    tab.text = "Suppliers"
-                    tab.setIcon(R.drawable.supplier_text_icon)
+                    tab.setText(R.string.suppliers)
+                    tab.setIcon(R.drawable.icons_supplier)
 
                 }
                 1 -> {
-                    tab.text = "Expenses"
-                    tab.setIcon(R.drawable.expense_text_icon)
+                    tab.setText(R.string.expenses)
+                    tab.setIcon(R.drawable.icons_expenses)
                 }
                 2 -> {
-                    tab.text = "Collectors"
-                    tab.setIcon(R.drawable.collectors_text_icon)
+                    tab.setText(R.string.customers)
+                    tab.setIcon(R.drawable.icons_collector)
                 }
                 else -> {
-                    tab.text = "Stats"
+                    tab.setText(R.string.stat)
                     tab.setIcon(R.drawable.icon_stat)
                 }
             }

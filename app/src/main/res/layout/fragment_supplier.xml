@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
-                android:backgroundTint="#F06292"
+                android:backgroundTint="@color/red"
                 android:layout_marginBottom="10dp"
                 android:elevation="20dp">
                 <RelativeLayout
@@ -104,7 +104,7 @@
                 android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#F06292" />
+                android:background="@color/red" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -121,7 +121,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:backgroundTint="#F06292"
+            android:backgroundTint="@color/red"
             android:text="Add new Supplier"
             android:textSize="16sp"
             android:textAllCaps="true"

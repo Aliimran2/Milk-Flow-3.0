@@ -33,31 +33,31 @@
 
 
             <TextView
-                android:id="@+id/total_expenditure"
+                android:id="@+id/suppliers_amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
                 android:background="@color/red"
                 style="@style/font_style_1"
-                android:text="@{`Inflow: `+String.valueOf(statModel.totalSupplierAmount)}"
+                android:text="@{`Suppliers: `+String.valueOf(statModel.totalSupplierAmount)}"
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/expenseTv"
+                android:id="@+id/expense_amount"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/font_style_1"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
-                android:background="@color/red"
-                android:text="@{`Other :`+String.valueOf(statModel.totalExpenditure)}"
+                android:background="@color/red2"
+                android:text="@{`Misc :`+String.valueOf(statModel.totalExpenditure)}"
                 android:textSize="24sp" />
 
 
             <TextView
-                android:id="@+id/total_gain"
+                android:id="@+id/customers_amount"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 style="@style/font_style_1"
@@ -65,7 +65,7 @@
                 android:layout_gravity="center"
                 android:textColor="@color/white"
                 android:background="@color/green"
-                android:text="@{`Outflow: `+String.valueOf(statModel.totalCollectorAmount)}"
+                android:text="@{`Customers: `+String.valueOf(statModel.totalCollectorAmount)}"
                 android:textSize="24sp" />
 
             <TextView

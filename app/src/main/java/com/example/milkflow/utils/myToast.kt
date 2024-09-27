@@ -15,8 +15,8 @@ fun myToast(context: Context, text:String, img: Int){
     binding.toastText.text = text
 
     val toast = Toast(context)
-    toast.duration = Toast.LENGTH_LONG
+    toast.duration = Toast.LENGTH_SHORT
     toast.view = binding.root
-    toast.setGravity( Gravity.CENTER, 0, 0)
+    toast.setGravity( Gravity.BOTTOM, 0, 0)
     toast.show()
 }

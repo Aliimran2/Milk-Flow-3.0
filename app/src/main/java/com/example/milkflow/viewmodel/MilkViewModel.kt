@@ -1,13 +1,16 @@
 package com.example.milkflow.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.milkflow.R
 import com.example.milkflow.model.ExpenseModel
 import com.example.milkflow.model.PersonModel
 import com.example.milkflow.repository.MilkRepository
+import com.github.mikephil.charting.data.PieEntry
 import kotlinx.coroutines.launch
 
 class MilkViewModel(private val repository: MilkRepository) : ViewModel() {
@@ -39,6 +42,32 @@ class MilkViewModel(private val repository: MilkRepository) : ViewModel() {
 
     private val _totalCollectorQuantity = MutableLiveData<Int>()
     val totalCollectorQuantity: LiveData<Int> get() = _totalCollectorQuantity
+
+    val pieEntriesLiveData = MediatorLiveData<List<PieEntry>>()
+    init {
+        pieEntriesLiveData.addSource(_totalSupplierQuantity){updateEntries()}
+        pieEntriesLiveData.addSource(_totalCollectorQuantity){updateEntries()}
+        pieEntriesLiveData.addSource(_totalExpenditure){updateEntries()}
+        pieEntriesLiveData.addSource(_difference){updateEntries()}
+    }
+
+    private fun updateEntries(){
+        val supplier = _totalSupplierAmount.value?:0
+        val collector = _totalCollectorQuantity.value?:0
+        val expenses = _totalExpenditure.value?:0
+        val profitOrLoss = _difference.value?:0
+
+        val pieEntries = listOf(
+            PieEntry(supplier.toFloat(), R.string.suppliers),
+            PieEntry(collector.toFloat(), R.string.customers),
+            PieEntry(expenses.toFloat(), R.string.expenses),
+            PieEntry(profitOrLoss.toFloat(), R.string.stat)
+        )
+
+        pieEntriesLiveData.value = pieEntries
+    }
+
+
 
     fun insert(personModel: PersonModel) = viewModelScope.launch { repository.insert(personModel) }
 
