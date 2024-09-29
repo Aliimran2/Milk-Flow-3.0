@@ -61,7 +61,6 @@
                         android:text="@string/suppliers"
                         style="@style/font_size"
                         android:id="@+id/title_stat_sup"
-                        android:textColor="@color/black"
                         android:layout_toEndOf="@+id/icon_sup"
                         android:layout_marginStart="8dp"
                         android:layout_centerVertical="true"/>
@@ -117,7 +116,6 @@
                         style="@style/font_size"
 
                         android:id="@+id/title_stat_col"
-                        android:textColor="@color/black"
                         android:layout_toEndOf="@+id/icon_col"
                         android:layout_marginStart="8dp"
                         android:layout_centerVertical="true"/>
@@ -190,7 +188,7 @@
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/icon_exp"
                         android:text="@string/customers"
-                        android:textColor="@color/black" />
+                         />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -238,7 +236,6 @@
                         android:text="@string/profit"
                         style="@style/font_size"
                         android:id="@+id/title_stat_pro"
-                        android:textColor="@color/black"
                         android:layout_toEndOf="@+id/icon_pro"
                         android:layout_marginStart="8dp"
                         android:layout_centerVertical="true"/>
