@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Milk Flow</string>
+    <string name="suppliers">Suppliers</string>
+    <string name="customers">Customers</string>
+    <string name="stat">Summary</string>
+    <string name="expenses">Expenses</string>
+    <string name="profit">Profit</string>
+    <string name="loss">Loss</string>
+    <string name="add_new_expenditure">Add new expenditure</string>
+    <string name="total_amount">Total Amount:</string>
+
+</resources>

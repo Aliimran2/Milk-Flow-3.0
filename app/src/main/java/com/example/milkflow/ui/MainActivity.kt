@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 else -> {
                     tab.setText(R.string.stat)
-                    tab.setIcon(R.drawable.icon_stat)
+                    tab.setIcon(R.drawable.stat_icon)
                 }
             }
         }.attach()
