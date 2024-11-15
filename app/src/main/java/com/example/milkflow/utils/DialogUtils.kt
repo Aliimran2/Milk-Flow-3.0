@@ -27,10 +27,10 @@ object DialogUtils {
             .setPositiveButton("Save") { _, _ ->
 
                 val person = binding.nameTv.text.toString()
-                val rate = binding.rateTv.text.toString().toIntOrNull() ?: 0
-                val quantity = binding.quantityTv.text.toString().toIntOrNull() ?: 0
+                val rate = binding.rateTv.text.toString().toDoubleOrNull() ?: 0.0
+                val quantity = binding.quantityTv.text.toString().toDoubleOrNull() ?: 0.0
 
-                if (person.isNotEmpty() && rate != 0 && quantity != 0) {
+                if (person.isNotEmpty() && rate != 0.0 && quantity != 0.0) {
                     val personModel = PersonModel(
                         personName = person,
                         personRate = rate,
@@ -60,9 +60,9 @@ object DialogUtils {
             .setPositiveButton("Save") { _, _ ->
 
                 val itemName = binding.itemNameEt.text.toString()
-                val expense = binding.itemAmountEt.text.toString().toIntOrNull() ?: 0
+                val expense = binding.itemAmountEt.text.toString().toDoubleOrNull() ?: 0.0
 
-                if (itemName.isNotEmpty() && expense != 0 ) {
+                if (itemName.isNotEmpty() && expense != 0.0 ) {
                     val expenseModel = ExpenseModel(itemName = itemName, itemAmount = expense)
                     viewModel.insertItem(expenseModel)
                     Toast.makeText(context, "Data added successfully", Toast.LENGTH_SHORT).show()
@@ -95,10 +95,10 @@ object DialogUtils {
             .setCancelable(false)
             .setPositiveButton("Save") { _, _ ->
                 val person = binding.nameTv.text.toString()
-                val rate = binding.rateTv.text.toString().toIntOrNull() ?: 0
-                val quantity = binding.quantityTv.text.toString().toIntOrNull() ?: 0
+                val rate = binding.rateTv.text.toString().toDoubleOrNull() ?: 0.0
+                val quantity = binding.quantityTv.text.toString().toDoubleOrNull() ?: 0.0
 
-                if (person.isNotEmpty() && rate != 0 && quantity != 0) {
+                if (person.isNotEmpty() && rate != 0.0 && quantity != 0.0) {
                     val updatedPersonModel = PersonModel(
                         id = personModel.id,
                         personName = person,
@@ -144,10 +144,10 @@ object DialogUtils {
             .setCancelable(false)
             .setPositiveButton("Save") { _, _ ->
                 val item = binding.itemNameEt.text.toString()
-                val amount = binding.itemAmountEt.text.toString().toIntOrNull() ?: 0
+                val amount = binding.itemAmountEt.text.toString().toDoubleOrNull() ?: 0.0
 
 
-                if (item.isNotEmpty() && amount != 0 ) {
+                if (item.isNotEmpty() && amount != 0.0 ) {
                     val updatedExpense = ExpenseModel(
                         id = expenseModel.id,
                         itemName = item,

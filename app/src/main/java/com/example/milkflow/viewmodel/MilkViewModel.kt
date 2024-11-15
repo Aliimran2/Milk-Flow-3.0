@@ -27,17 +27,17 @@ class MilkViewModel(private val repository: MilkRepository) : ViewModel() {
     fun getCollectors(): LiveData<List<PersonModel>> = repository.getPersonsByType("Collector")
     fun getAllExpenses(): LiveData<List<ExpenseModel>> = repository.getAllExpense()
 
-    private val _totalSupplierAmount = MutableLiveData<Int>()
-    val totalSupplierAmount: LiveData<Int> get() = _totalSupplierAmount
+    private val _totalSupplierAmount = MutableLiveData<Double>()
+    val totalSupplierAmount: LiveData<Double> get() = _totalSupplierAmount
 
-    private val _totalCustomerAmount = MutableLiveData<Int>()
-    val totalCustomerAmount: LiveData<Int> get() = _totalCustomerAmount
+    private val _totalCustomerAmount = MutableLiveData<Double>()
+    val totalCustomerAmount: LiveData<Double> get() = _totalCustomerAmount
 
-    private val _totalExpenditure = MutableLiveData<Int>()
-    val totalExpenditure: LiveData<Int> get() = _totalExpenditure
+    private val _totalExpenditure = MutableLiveData<Double>()
+    val totalExpenditure: LiveData<Double> get() = _totalExpenditure
 
-    private val _difference = MutableLiveData<Int>()
-    val difference: LiveData<Int> get() = _difference
+    private val _difference = MutableLiveData<Double>()
+    val difference: LiveData<Double> get() = _difference
 
     private val _noOfSuppliers = MutableLiveData<Int>()
     val noOfSuppliers: LiveData<Int> get() = _noOfSuppliers
@@ -45,11 +45,11 @@ class MilkViewModel(private val repository: MilkRepository) : ViewModel() {
     private val _noOfCollectors = MutableLiveData<Int>()
     val noOfCollectors: LiveData<Int> get() = _noOfCollectors
 
-    private val _totalSupplierQuantity = MutableLiveData<Int>()
-    val totalSupplierQuantity: LiveData<Int> get() = _totalSupplierQuantity
+    private val _totalSupplierQuantity = MutableLiveData<Double>()
+    val totalSupplierQuantity: LiveData<Double> get() = _totalSupplierQuantity
 
-    private val _totalCustomerQuantity = MutableLiveData<Int>()
-    val totalCustomerQuantity: LiveData<Int> get() = _totalCustomerQuantity
+    private val _totalCustomerQuantity = MutableLiveData<Double>()
+    val totalCustomerQuantity: LiveData<Double> get() = _totalCustomerQuantity
 
     val pieEntriesLiveData = MediatorLiveData<List<PieEntry>>()
     init {
@@ -110,7 +110,7 @@ class MilkViewModel(private val repository: MilkRepository) : ViewModel() {
     }
 
     fun calculateDifference() {
-        val diff = (_totalCustomerAmount.value ?: 0) - ((_totalExpenditure.value ?: 0) + (_totalSupplierAmount.value ?: 0))
+        val diff = (_totalCustomerAmount.value ?: 0.0) - ((_totalExpenditure.value ?: 0.0) + (_totalSupplierAmount.value ?: 0.0))
         _difference.value = diff
 
     }

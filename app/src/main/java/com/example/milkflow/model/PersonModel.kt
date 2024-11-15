@@ -9,8 +9,8 @@ data class PersonModel(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     var personName: String = "",
-    var personRate: Int = 0,
-    var personQuantity: Int = 0,
+    var personRate: Double = 0.0,
+    var personQuantity: Double = 0.0,
     val personType: String
 )
 
@@ -20,7 +20,7 @@ data class ExpenseModel(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     var itemName : String,
-    var itemAmount : Int,
+    var itemAmount : Double,
 
 )
 
