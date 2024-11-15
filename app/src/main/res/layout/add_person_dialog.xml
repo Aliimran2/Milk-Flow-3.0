@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
 
             android:ems="10"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:hint="Rate" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
 
         android:ems="10"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:hint="Quantity" />
 </com.google.android.material.textfield.TextInputLayout>
 
