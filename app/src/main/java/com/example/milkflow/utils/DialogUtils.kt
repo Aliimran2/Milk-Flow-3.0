@@ -2,16 +2,13 @@ package com.example.milkflow.utils
 
 import android.app.AlertDialog
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
-import com.example.milkflow.R
 import com.example.milkflow.databinding.AddExpenseDialogBinding
 import com.example.milkflow.databinding.AddPersonDialogBinding
 import com.example.milkflow.model.ExpenseModel
 import com.example.milkflow.model.PersonModel
 import com.example.milkflow.viewmodel.MilkViewModel
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 object DialogUtils {
 

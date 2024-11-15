@@ -1,5 +1,6 @@
 package com.example.milkflow.repository
 
+import android.view.View
 import androidx.lifecycle.LiveData
 import com.example.milkflow.database.ExpenseDao
 import com.example.milkflow.database.MilkPersonDao
@@ -11,7 +12,7 @@ class MilkRepository(private val dao: MilkPersonDao, private val expenseDao: Exp
     fun getPersonsByType(type:String) : LiveData<List<PersonModel>> = dao.getPersonsByType(type)
     fun getAllExpense():LiveData<List<ExpenseModel>> = expenseDao.getAllExpenditures()
 
-    suspend fun insert(person:PersonModel){
+    suspend fun insert(person: PersonModel){
         dao.insert(person)
     }
 

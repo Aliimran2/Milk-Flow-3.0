@@ -1,11 +1,8 @@
 package com.example.milkflow.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.milkflow.R
@@ -14,23 +11,21 @@ import com.example.milkflow.database.PersonDatabase
 import com.example.milkflow.databinding.FragmentSupplierBinding
 import com.example.milkflow.repository.MilkRepository
 import com.example.milkflow.utils.DialogUtils
-import com.example.milkflow.utils.myToast
 import com.example.milkflow.viewmodel.MilkViewModel
 import com.example.milkflow.viewmodel.MilkViewModelFactory
+import com.google.android.material.snackbar.Snackbar
 
 
-class SupplierFragment : Fragment() {
+class SupplierFragment : Fragment(R.layout.fragment_supplier) {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: MilkPersonAdapter
-    private var _binding: FragmentSupplierBinding? = null
-    val binding get() = _binding!!
+    private lateinit var binding: FragmentSupplierBinding
     private lateinit var viewModel: MilkViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentSupplierBinding.inflate(inflater, container, false)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentSupplierBinding.bind(view)
 
         val dao = PersonDatabase.getInstance(requireContext()).getDao()
         val expenseDao = PersonDatabase.getInstance(requireContext()).getExpenseDao()
@@ -54,21 +49,23 @@ class SupplierFragment : Fragment() {
         adapter = MilkPersonAdapter(
             isSupplier = true,
             onDeletePerson = { person ->
-            viewModel.delete(person)
-            myToast(requireContext(),"${person.personName} is deleted", R.drawable.baseline_delete_24)
-        }, onEditPerson = { person ->
-            DialogUtils.editPersonDialog(requireContext(), viewModel, person, "Supplier")
-        }
+                viewModel.delete(person)
+//            myToast(requireContext(),"${person.personName} is deleted", R.drawable.baseline_delete_24)
+
+                    Snackbar.make(view, "${person.personName} is deleted",Snackbar.LENGTH_LONG)
+                        .setAction("Undo") { viewModel.insert(person) }
+                        .show()
+
+            }, onEditPerson = { person ->
+                DialogUtils.editPersonDialog(requireContext(), viewModel, person, "Supplier")
+            }
         )
         recyclerView.adapter = adapter
 
-        return binding.root
+
+
     }
 
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 
 }

@@ -1,50 +1,42 @@
 package com.example.milkflow.ui
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.milkflow.R
 import com.example.milkflow.adapter.ExpenseAdapter
-import com.example.milkflow.adapter.MilkPersonAdapter
 import com.example.milkflow.database.PersonDatabase
 import com.example.milkflow.databinding.FragmentExpenseBinding
 import com.example.milkflow.repository.MilkRepository
 import com.example.milkflow.utils.DialogUtils
-import com.example.milkflow.utils.myToast
 import com.example.milkflow.viewmodel.MilkViewModel
 import com.example.milkflow.viewmodel.MilkViewModelFactory
+import com.google.android.material.snackbar.Snackbar
 
 
-class ExpenseFragment : Fragment() {
+class ExpenseFragment : Fragment(R.layout.fragment_expense) {
 
-    private var _binding : FragmentExpenseBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentExpenseBinding
     private lateinit var adapter: ExpenseAdapter
 
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentExpenseBinding.inflate(inflater,container,false)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentExpenseBinding.bind(view)
         val dao = PersonDatabase.getInstance(requireContext()).getDao()
         val expenseDao = PersonDatabase.getInstance(requireContext()).getExpenseDao()
         val repository = MilkRepository(dao, expenseDao)
-        val viewModel = ViewModelProvider(requireActivity(), MilkViewModelFactory(repository))[MilkViewModel::class.java]
+        val viewModel = ViewModelProvider(
+            requireActivity(),
+            MilkViewModelFactory(repository)
+        )[MilkViewModel::class.java]
 
         binding.expenseModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
 
-        viewModel.getAllExpenses().observe(viewLifecycleOwner){
+        viewModel.getAllExpenses().observe(viewLifecycleOwner) {
             adapter.submitList(it)
             viewModel.updateExpenseTotal(it)
 
@@ -54,24 +46,20 @@ class ExpenseFragment : Fragment() {
         adapter = ExpenseAdapter(
             onDeleteExpense = { item ->
                 viewModel.deleteItem(item)
-                Toast.makeText(requireContext(), "${item.itemName} is deleted", Toast.LENGTH_SHORT).show()
+                Snackbar.make(view, "${item.itemName} is Deleted", Snackbar.LENGTH_LONG)
+                    .setAction("Undo") { viewModel.insertItem(item) }
+                    .show()
             },
             onEditExpense = { item ->
-                DialogUtils.editExpenseDialog(requireContext(),viewModel, item)
+                DialogUtils.editExpenseDialog(requireContext(), viewModel, item)
 
             }
         )
 
         binding.addButton.setOnClickListener {
-            DialogUtils.addExpenseDialog(requireContext(),viewModel)
+            DialogUtils.addExpenseDialog(requireContext(), viewModel)
         }
 
         binding.recyclerView.adapter = adapter
-        return binding.root
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }
