@@ -38,7 +38,7 @@ class ExpenseFragment : Fragment() {
         val dao = PersonDatabase.getInstance(requireContext()).getDao()
         val expenseDao = PersonDatabase.getInstance(requireContext()).getExpenseDao()
         val repository = MilkRepository(dao, expenseDao)
-        val viewModel = ViewModelProvider(this, MilkViewModelFactory(repository))[MilkViewModel::class.java]
+        val viewModel = ViewModelProvider(requireActivity(), MilkViewModelFactory(repository))[MilkViewModel::class.java]
 
         binding.expenseModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
@@ -54,7 +54,7 @@ class ExpenseFragment : Fragment() {
         adapter = ExpenseAdapter(
             onDeleteExpense = { item ->
                 viewModel.deleteItem(item)
-                myToast(requireContext(),"${item.itemName} is deleted", R.drawable.baseline_delete_24)
+                Toast.makeText(requireContext(), "${item.itemName} is deleted", Toast.LENGTH_SHORT).show()
             },
             onEditExpense = { item ->
                 DialogUtils.editExpenseDialog(requireContext(),viewModel, item)

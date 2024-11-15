@@ -2,8 +2,10 @@ package com.example.milkflow.utils
 
 import android.app.AlertDialog
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
+import com.example.milkflow.R
 import com.example.milkflow.databinding.AddExpenseDialogBinding
 import com.example.milkflow.databinding.AddPersonDialogBinding
 import com.example.milkflow.model.ExpenseModel
@@ -133,7 +135,7 @@ object DialogUtils {
         val binding = AddExpenseDialogBinding.inflate(inflater)
 
         binding.itemNameEt.setText(expenseModel.itemName)
-        binding.itemAmountEt.setText(expenseModel.itemAmount)
+        binding.itemAmountEt.setText(expenseModel.itemAmount.toString())
 
 
         AlertDialog.Builder(context)
@@ -152,7 +154,7 @@ object DialogUtils {
                         itemAmount = amount,
                     )
                     viewModel.updateItem(updatedExpense)
-                    Toast.makeText(context, "Edited successfully", Toast.LENGTH_SHORT).show()
+
 
                 } else {
                     Toast.makeText(context, "Please fill all fields", Toast.LENGTH_LONG).show()

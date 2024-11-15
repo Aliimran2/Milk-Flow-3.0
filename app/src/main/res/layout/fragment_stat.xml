@@ -1,14 +1,274 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.StatFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+            name="statModel"
+            type="com.example.milkflow.viewmodel.MilkViewModel" />
+
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".ui.StatFragment">
+        <com.github.mikephil.charting.charts.PieChart
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_alignParentTop="true"
+            android:id="@+id/pieChart"/>
 
-</FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/pieChart"
+            android:layout_marginTop="4dp"
+            android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="12dp"
+                android:id="@+id/supplier_view"
+                app:cardCornerRadius="8dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:padding="8dp"
+                        android:layout_margin="8dp"
+                        android:src="@drawable/icons_supplier"
+                        android:background="@drawable/circle_bkgd"
+                        android:backgroundTint="@color/blue"
+                        android:layout_alignParentStart="true"
+                        android:id="@+id/icon_sup"
+                        android:scaleType="centerCrop"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/suppliers"
+                        style="@style/font_size"
+                        android:id="@+id/title_stat_sup"
+                        android:layout_toEndOf="@+id/icon_sup"
+                        android:layout_marginStart="8dp"
+                        android:layout_centerVertical="true"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:text="@{`Rs. `+String.valueOf(statModel.totalSupplierAmount)}"
+                        android:fontFamily="@font/poppins"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="16dp"/>
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="12dp"
+                android:layout_marginTop="4dp"
+                android:id="@+id/expense_view"
+                app:cardCornerRadius="8dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:padding="8dp"
+                        android:layout_margin="8dp"
+                        android:src="@drawable/icons_expenses"
+                        android:background="@drawable/circle_bkgd"
+                        android:backgroundTint="@color/blue"
+                        android:layout_alignParentStart="true"
+                        android:id="@+id/icon_col"
+                        android:scaleType="centerCrop"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/expenses"
+                        style="@style/font_size"
+
+                        android:id="@+id/title_stat_col"
+                        android:layout_toEndOf="@+id/icon_col"
+                        android:layout_marginStart="8dp"
+                        android:layout_centerVertical="true"/>
+<!--                    <com.google.android.material.progressindicator.LinearProgressIndicator-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        style="?android:attr/progressBarStyleHorizontal"-->
+<!--                        tools:progress="89"-->
+<!--                        app:trackColor="@color/red"-->
+<!--                        android:layout_below="@+id/title_stat_col"-->
+<!--                        android:layout_toEndOf="@id/icon_col"-->
+<!--                        android:layout_margin="8dp"/>-->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:text="@{`Rs. `+String.valueOf(statModel.totalExpenditure)}"
+                        android:fontFamily="@font/poppins"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="16dp"/>
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="12dp"
+                android:layout_marginTop="4dp"
+                android:id="@+id/customer_view"
+                app:cardCornerRadius="8dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:padding="8dp"
+                        android:layout_margin="8dp"
+                        android:src="@drawable/icons_collector"
+                        android:background="@drawable/circle_bkgd"
+                        android:backgroundTint="@color/blue"
+                        android:layout_alignParentStart="true"
+                        android:id="@+id/icon_exp"
+                        android:scaleType="centerCrop"/>
+
+                    <!--                    <com.google.android.material.progressindicator.LinearProgressIndicator-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        style="?android:attr/progressBarStyleHorizontal"-->
+<!--                        tools:progress="89"-->
+<!--                        app:trackColor="@color/red"-->
+<!--                        android:layout_below="@+id/title_stat_exp"-->
+<!--                        android:layout_toEndOf="@id/icon_exp"-->
+<!--                        android:layout_margin="8dp"/>-->
+
+                    <TextView
+                        android:id="@+id/title_stat_exp"
+                        style="@style/font_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/icon_exp"
+                        android:text="@string/customers"
+                         />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:text="@{`Rs. `+String.valueOf(statModel.totalCustomerAmount)}"
+                        android:fontFamily="@font/poppins"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="16dp"/>
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="12dp"
+                android:layout_marginTop="4dp"
+                android:id="@+id/profit_view"
+                app:cardCornerRadius="8dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:padding="8dp"
+                        android:layout_margin="8dp"
+                        android:src="@drawable/icons_statistics_b"
+                        android:background="@drawable/circle_bkgd"
+                        android:backgroundTint="@color/blue"
+                        android:layout_alignParentStart="true"
+                        android:id="@+id/icon_pro"
+                        android:scaleType="centerCrop"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/profit"
+                        style="@style/font_size"
+                        android:id="@+id/title_stat_pro"
+                        android:layout_toEndOf="@+id/icon_pro"
+                        android:layout_marginStart="8dp"
+                        android:layout_centerVertical="true"/>
+                    <!--                    <com.google.android.material.progressindicator.LinearProgressIndicator-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        style="?android:attr/progressBarStyleHorizontal"-->
+                    <!--                        tools:progress="89"-->
+                    <!--                        app:trackColor="@color/red"-->
+                    <!--                        android:layout_below="@+id/title_stat_pro"-->
+                    <!--                        android:layout_toEndOf="@id/icon_exp"-->
+                    <!--                        android:layout_margin="8dp"/>-->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:text="@{`Rs. `+String.valueOf(statModel.difference)}"
+                        android:fontFamily="@font/poppins"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="16dp"/>
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+</layout>

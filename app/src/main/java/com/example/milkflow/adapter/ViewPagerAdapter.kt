@@ -21,8 +21,8 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
     override fun createFragment(position: Int): Fragment {
             return when(position) {
                 0 -> SupplierFragment()
-                1 -> CollectorFragment()
-                2 -> ExpenseFragment()
+                1 -> ExpenseFragment()
+                2 -> CollectorFragment()
                 else -> StatFragment()
             }
     }

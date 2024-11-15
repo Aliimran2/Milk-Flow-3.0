@@ -24,6 +24,7 @@ class SupplierFragment : Fragment() {
     private lateinit var adapter: MilkPersonAdapter
     private var _binding: FragmentSupplierBinding? = null
     val binding get() = _binding!!
+    private lateinit var viewModel: MilkViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,8 +35,8 @@ class SupplierFragment : Fragment() {
         val dao = PersonDatabase.getInstance(requireContext()).getDao()
         val expenseDao = PersonDatabase.getInstance(requireContext()).getExpenseDao()
         val factory = MilkRepository(dao, expenseDao)
-        val viewModel =
-            ViewModelProvider(this, MilkViewModelFactory(factory))[MilkViewModel::class.java]
+        viewModel =
+            ViewModelProvider(requireActivity(), MilkViewModelFactory(factory))[MilkViewModel::class.java]
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
@@ -46,11 +47,13 @@ class SupplierFragment : Fragment() {
 
         viewModel.getSuppliers().observe(viewLifecycleOwner) {
             adapter.submitList(it)
-            viewModel.updateTotal(it)
+            viewModel.updateSupplierTotal(it)
         }
 
         recyclerView = binding.recyclerView
-        adapter = MilkPersonAdapter(onDeletePerson = { person ->
+        adapter = MilkPersonAdapter(
+            isSupplier = true,
+            onDeletePerson = { person ->
             viewModel.delete(person)
             myToast(requireContext(),"${person.personName} is deleted", R.drawable.baseline_delete_24)
         }, onEditPerson = { person ->
