@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.milkflow.AddPersonDataFragment
 import com.example.milkflow.R
 import com.example.milkflow.adapter.ExpenseAdapter
 import com.example.milkflow.database.PersonDatabase
@@ -57,7 +58,14 @@ class ExpenseFragment : Fragment(R.layout.fragment_expense) {
         )
 
         binding.addButton.setOnClickListener {
-            DialogUtils.addExpenseDialog(requireContext(), viewModel)
+
+            val fragment = AddPersonDataFragment.newInstance("", "Expense")
+            val supportFragmentManager = (activity as MainActivity).supportFragmentManager
+            fragment.show(supportFragmentManager, AddPersonDataFragment::class.java.simpleName)
+
+
+
+
         }
 
         binding.recyclerView.adapter = adapter

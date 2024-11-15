@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.milkflow.AddPersonDataFragment
 import com.example.milkflow.R
 import com.example.milkflow.adapter.MilkPersonAdapter
 import com.example.milkflow.database.PersonDatabase
@@ -37,7 +38,12 @@ class CollectorFragment : Fragment(R.layout.fragment_collector) {
         binding.lifecycleOwner = viewLifecycleOwner
 
         binding.addButton.setOnClickListener {
-            DialogUtils.addPersonDialog(requireContext(), viewModel, "Collector")
+
+
+            val supportFragmentManager = (activity as MainActivity).supportFragmentManager
+            val fragment = AddPersonDataFragment.newInstance("Collector", "Person")
+            fragment.show(supportFragmentManager, AddPersonDataFragment::class.java.simpleName)
+
         }
 
         viewModel.getCollectors().observe(viewLifecycleOwner) {
