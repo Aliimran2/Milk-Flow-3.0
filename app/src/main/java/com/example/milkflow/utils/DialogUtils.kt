@@ -12,66 +12,6 @@ import com.example.milkflow.viewmodel.MilkViewModel
 
 object DialogUtils {
 
-    fun addPersonDialog(context: Context, viewModel: MilkViewModel, personType: String) {
-
-        val inflater = LayoutInflater.from(context)
-        val binding = AddPersonDialogBinding.inflate(inflater)
-
-        AlertDialog.Builder(context)
-            .setTitle("Add new person")
-            .setView(binding.root)
-            .setCancelable(false)
-            .setPositiveButton("Save") { _, _ ->
-
-                val person = binding.nameTv.text.toString()
-                val rate = binding.rateTv.text.toString().toDoubleOrNull() ?: 0.0
-                val quantity = binding.quantityTv.text.toString().toDoubleOrNull() ?: 0.0
-
-                if (person.isNotEmpty() && rate != 0.0 && quantity != 0.0) {
-                    val personModel = PersonModel(
-                        personName = person,
-                        personRate = rate,
-                        personQuantity = quantity,
-                        personType = personType
-                    )
-                    viewModel.insert(personModel)
-                    Toast.makeText(context, "Data added successfully", Toast.LENGTH_SHORT).show()
-
-                } else {
-                    Toast.makeText(context, "Please fill all fields", Toast.LENGTH_LONG).show()
-                }
-            }
-            .setNegativeButton("Cancel", null)
-            .show()
-    }
-
-    fun addExpenseDialog(context: Context, viewModel: MilkViewModel) {
-
-        val inflater = LayoutInflater.from(context)
-        val binding = AddExpenseDialogBinding.inflate(inflater)
-
-        AlertDialog.Builder(context)
-            .setTitle("Add mew expense")
-            .setView(binding.root)
-            .setCancelable(false)
-            .setPositiveButton("Save") { _, _ ->
-
-                val itemName = binding.itemNameEt.text.toString()
-                val expense = binding.itemAmountEt.text.toString().toDoubleOrNull() ?: 0.0
-
-                if (itemName.isNotEmpty() && expense != 0.0 ) {
-                    val expenseModel = ExpenseModel(itemName = itemName, itemAmount = expense)
-                    viewModel.insertItem(expenseModel)
-                    Toast.makeText(context, "Data added successfully", Toast.LENGTH_SHORT).show()
-
-                } else {
-                    Toast.makeText(context, "Please fill all fields", Toast.LENGTH_LONG).show()
-                }
-            }
-            .setNegativeButton("Cancel", null)
-            .show()
-    }
-
     fun editPersonDialog(
         context: Context,
         viewModel: MilkViewModel,
@@ -113,12 +53,6 @@ object DialogUtils {
             .setNegativeButton("Cancel", null)
             .show()
     }
-
-
-
-
-
-
 
 
     fun editExpenseDialog(

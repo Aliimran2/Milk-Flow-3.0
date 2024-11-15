@@ -1,5 +1,6 @@
 package com.example.milkflow.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -37,7 +38,12 @@ class SupplierFragment : Fragment(R.layout.fragment_supplier) {
         binding.lifecycleOwner = viewLifecycleOwner
 
         binding.addButton.setOnClickListener {
-            DialogUtils.addPersonDialog(requireContext(), viewModel, "Supplier")
+
+
+            val supportFragmentManager = (activity as MainActivity).supportFragmentManager
+            val fragment = AddPersonDataFragment.newInstance("Supplier", "Person")
+            fragment.show(supportFragmentManager, AddPersonDataFragment::class.java.simpleName)
+
         }
 
         viewModel.getSuppliers().observe(viewLifecycleOwner) {
@@ -49,12 +55,18 @@ class SupplierFragment : Fragment(R.layout.fragment_supplier) {
         adapter = MilkPersonAdapter(
             isSupplier = true,
             onDeletePerson = { person ->
-                viewModel.delete(person)
-//            myToast(requireContext(),"${person.personName} is deleted", R.drawable.baseline_delete_24)
 
+                val deleteConfirm = AlertDialog.Builder(requireContext())
+                deleteConfirm.setTitle("Delete Record")
+                    .setMessage("Are you sure?")
+                    .setPositiveButton("Yes"){_, _ ->
+                        viewModel.delete(person)
                     Snackbar.make(view, "${person.personName} is deleted",Snackbar.LENGTH_LONG)
                         .setAction("Undo") { viewModel.insert(person) }
                         .show()
+                    }
+                    .setNegativeButton("Cancel", null)
+                    .show()
 
             }, onEditPerson = { person ->
                 DialogUtils.editPersonDialog(requireContext(), viewModel, person, "Supplier")

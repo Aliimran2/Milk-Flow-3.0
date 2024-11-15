@@ -8,5 +8,7 @@
     <string name="loss">Loss</string>
     <string name="add_new_expenditure">Add new expenditure</string>
     <string name="total_amount">Total Amount:</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

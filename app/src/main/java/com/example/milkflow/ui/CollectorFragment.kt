@@ -37,7 +37,12 @@ class CollectorFragment : Fragment(R.layout.fragment_collector) {
         binding.lifecycleOwner = viewLifecycleOwner
 
         binding.addButton.setOnClickListener {
-            DialogUtils.addPersonDialog(requireContext(), viewModel, "Collector")
+
+
+            val supportFragmentManager = (activity as MainActivity).supportFragmentManager
+            val fragment = AddPersonDataFragment.newInstance("Collector", "Person")
+            fragment.show(supportFragmentManager, AddPersonDataFragment::class.java.simpleName)
+
         }
 
         viewModel.getCollectors().observe(viewLifecycleOwner) {

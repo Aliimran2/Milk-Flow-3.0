@@ -10,15 +10,7 @@ object ColorsUtil {
         Color.parseColor("#FF8C00"),
         Color.parseColor("#00FF00"),
         Color.parseColor("#FF1493"),
-//
-//        Color.parseColor("#FFCDD2"), // Light Red
-//        Color.parseColor("#F8BBD0"), // Pink
-//        Color.parseColor("#E1BEE7"), // Purple
-//        Color.parseColor("#C5CAE9"), // Indigo
-//        Color.parseColor("#BBDEFB"), // Blue
-//        Color.parseColor("#C8E6C9"), // Green
-//        Color.parseColor("#FFCCBC"), // Orange
-//        Color.parseColor("#D7CCC8")  // Brown
+
     )
 
     fun getRandomColorFromPalette(): Int {
@@ -26,13 +18,7 @@ object ColorsUtil {
     }
 
 
-    fun getRandomColor(): Int {
-        val random = java.util.Random()
-        val red = random.nextInt(156) + 100
-        val green = random.nextInt(156) + 100
-        val blue = random.nextInt(156) + 100
-        return Color.rgb(red, green, blue)
-    }
+
 
 
 }
