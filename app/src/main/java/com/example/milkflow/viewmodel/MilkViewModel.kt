@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.milkflow.model.ExpenseModel
 import com.example.milkflow.model.PersonModel
 import com.example.milkflow.repository.MilkRepository
+import com.example.milkflow.utils.formatToTwoDecimalPlaces
 import com.github.mikephil.charting.data.PieEntry
 import kotlinx.coroutines.launch
 
@@ -52,31 +53,6 @@ class MilkViewModel(private val repository: MilkRepository) : ViewModel() {
     private val _totalCustomerQuantity = MutableLiveData<Double>()
     val totalCustomerQuantity: LiveData<Double> get() = _totalCustomerQuantity
 
-    val pieEntriesLiveData = MediatorLiveData<List<PieEntry>>()
-    init {
-        pieEntriesLiveData.addSource(_totalSupplierAmount){updateEntries()}
-        pieEntriesLiveData.addSource(_totalCustomerAmount){updateEntries()}
-        pieEntriesLiveData.addSource(_totalExpenditure){updateEntries()}
-        pieEntriesLiveData.addSource(_difference){updateEntries()}
-    }
-
-    private fun updateEntries(){
-        val supplier = _totalSupplierAmount.value?:0
-        val collector = _totalCustomerAmount.value?:0
-        val expenses = _totalExpenditure.value?:0
-        val profitOrLoss = _difference.value?:0
-
-        val pieEntries = listOf(
-            PieEntry(supplier.toFloat(), "Supplier"),
-            PieEntry(collector.toFloat(), "Customer"),
-            PieEntry(expenses.toFloat(), "Expense"),
-            PieEntry(profitOrLoss.toFloat(), "Profit")
-        )
-
-        pieEntriesLiveData.value = pieEntries
-    }
-
-
 
 
 
@@ -94,20 +70,20 @@ class MilkViewModel(private val repository: MilkRepository) : ViewModel() {
 
     fun updateSupplierTotal(persons: List<PersonModel>) {
 
-        _totalSupplierAmount.value = persons.sumOf { it.personRate * it.personQuantity }
-        _totalSupplierQuantity.value = persons.sumOf { it.personQuantity }
+        _totalSupplierAmount.value = persons.sumOf { it.personRate * it.personQuantity }.formatToTwoDecimalPlaces()
+        _totalSupplierQuantity.value = persons.sumOf { it.personQuantity }.formatToTwoDecimalPlaces()
         _noOfSuppliers.value = persons.size
     }
 
     fun updateCustomerTotal(persons: List<PersonModel>) {
-        _totalCustomerAmount.value = persons.sumOf { it.personRate * it.personQuantity }
-        _totalCustomerQuantity.value = persons.sumOf { it.personQuantity }
+        _totalCustomerAmount.value = persons.sumOf { it.personRate * it.personQuantity }.formatToTwoDecimalPlaces()
+        _totalCustomerQuantity.value = persons.sumOf { it.personQuantity }.formatToTwoDecimalPlaces()
         _noOfCollectors.value = persons.size
     }
 
 
     fun updateExpenseTotal(expense: List<ExpenseModel>) {
-        _totalExpenditure.value = expense.sumOf { it.itemAmount }
+        _totalExpenditure.value = expense.sumOf { it.itemAmount }.formatToTwoDecimalPlaces()
     }
 
     fun calculateDifference() {

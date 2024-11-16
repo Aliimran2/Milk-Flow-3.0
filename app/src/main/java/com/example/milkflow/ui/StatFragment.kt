@@ -58,49 +58,7 @@ class StatFragment : Fragment(R.layout.fragment_stat) {
         }
 
 
-        viewModel.pieEntriesLiveData.observe(viewLifecycleOwner) {
-            val dataSet = PieDataSet(it, "")
-            dataSet.colors = ColorTemplate.MATERIAL_COLORS.toList()
-            dataSet.valueTextSize = 12f
-            dataSet.valueTextColor = Color.WHITE
 
-
-            val pieData = PieData(dataSet)
-            pieData.setValueFormatter(object : ValueFormatter() {
-                override fun getFormattedValue(value: Float): String {
-                    return "${value.toInt()}%"
-                }
-            })
-
-            binding.pieChart.apply {
-
-                setUsePercentValues(true)
-                description.isEnabled = false
-                setDrawEntryLabels(true)
-                holeRadius = 58f
-                transparentCircleRadius = 61f
-                setHoleColor(Color.WHITE)
-                setCenterTextColor(Color.BLACK)
-                setCenterTextSize(22f)
-                centerText = "Summary"
-                isRotationEnabled = true
-                setTouchEnabled(true)
-                animateY(3000, com.github.mikephil.charting.animation.Easing.EaseInOutQuad)
-
-                legend.apply {
-                    verticalAlignment = Legend.LegendVerticalAlignment.BOTTOM
-                    horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
-                    orientation = Legend.LegendOrientation.HORIZONTAL
-                    form = Legend.LegendForm.SQUARE
-                    formSize = 10f
-                    textSize = 12f
-                    textColor = Color.BLACK
-                    isWordWrapEnabled = true
-                }
-                data = pieData
-                invalidate()
-            }
-        }
 
         viewModel.getCollectors().observe(viewLifecycleOwner) { collectors ->
             viewModel.updateCustomerTotal(collectors)
