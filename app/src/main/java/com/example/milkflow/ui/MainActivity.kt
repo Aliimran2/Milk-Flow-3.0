@@ -42,21 +42,21 @@ class MainActivity : AppCompatActivity() {
         TabLayoutMediator(binding.tabLayout, binding.viewPager) {tab, position ->
             when (position){
                 0 -> {
-                    tab.setText(R.string.suppliers)
-                    tab.setIcon(R.drawable.icons_supplier)
+                    tab.setText(R.string.stat)
+                    tab.setIcon(R.drawable.stat_icon)
 
                 }
                 1 -> {
-                    tab.setText(R.string.expenses)
-                    tab.setIcon(R.drawable.icons_expenses)
+                    tab.setText(R.string.suppliers)
+                    tab.setIcon(R.drawable.icons_supplier)
                 }
                 2 -> {
                     tab.setText(R.string.customers)
                     tab.setIcon(R.drawable.icons_collector)
                 }
                 else -> {
-                    tab.setText(R.string.stat)
-                    tab.setIcon(R.drawable.stat_icon)
+                    tab.setText(R.string.expenses)
+                    tab.setIcon(R.drawable.icons_expenses)
                 }
             }
         }.attach()

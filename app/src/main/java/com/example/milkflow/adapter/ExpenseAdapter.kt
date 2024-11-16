@@ -9,7 +9,7 @@ import com.example.milkflow.R
 import com.example.milkflow.databinding.ExpenseItemBinding
 import com.example.milkflow.model.ExpenseModel
 import com.example.milkflow.utils.ColorsUtil
-import com.example.milkflow.utils.myToast
+
 
 class ExpenseAdapter(
     private val onDeleteExpense: (ExpenseModel) -> Unit,

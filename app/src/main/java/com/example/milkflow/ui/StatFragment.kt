@@ -22,18 +22,16 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 
 
-class StatFragment : Fragment() {
+class StatFragment : Fragment(R.layout.fragment_stat) {
 
 
-    private var _binding: FragmentStatBinding? = null
-    val binding get() = _binding!!
+    private lateinit var binding: FragmentStatBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        _binding = FragmentStatBinding.inflate(inflater, container, false)
+
+        binding = FragmentStatBinding.bind(view)
 
         val dao = PersonDatabase.getInstance(requireContext()).getDao()
         val expenseDao = PersonDatabase.getInstance(requireContext()).getExpenseDao()
@@ -48,11 +46,11 @@ class StatFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         binding.supplierView.setOnClickListener {
-            viewModel.navigateTo(0)
+            viewModel.navigateTo(1)
         }
 
         binding.expenseView.setOnClickListener {
-            viewModel.navigateTo(1)
+            viewModel.navigateTo(3)
         }
 
         binding.customerView.setOnClickListener {
@@ -122,9 +120,6 @@ class StatFragment : Fragment() {
 
 
 
-
-
-        return binding.root
     }
 
 }
